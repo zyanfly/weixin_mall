@@ -1,0 +1,7 @@
+<view class="location-container">
+  <view bind:tap="redirectAddress">{{location.address}}</view>
+  <view bind:tap="makePhone">{{phone}}</view>
+  <view>
+    <button open-type='contact'>客服</button>
+  </view>
+</view>

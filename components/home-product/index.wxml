@@ -1,0 +1,8 @@
+<view class="container">
+    <view>精品推荐</view>
+</view>
+<block wx:for="{{products}}">
+    <image data-id="{{item.id}}" bind:tap="onTap" src="{{item.pic}}" />
+    <text>{{item.name}}</text>
+    <text>{{item.price}}</text>
+</block>

@@ -1,0 +1,8 @@
+<v-carousel carousels="{{carousels}}" />
+<v-pay name="{{basic.name}}" />
+<v-location location="{{location}}" phone="{{basic.phone}}"/>
+<v-product products="{{products}}" />
+<v-merchant-introduction basic="{{basic}}"/>
+<v-merchant-image merchant_images="{{merchant_images}}" />
+<v-support />
+<v-loading class="loading-center" wx:if="{{loadingCenter}}"/>

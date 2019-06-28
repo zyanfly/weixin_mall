@@ -1,0 +1,41 @@
+<view>
+    <block wx:for="{{affairs}}">
+        <view class="affair_container">
+            <image class="pic" src="{{basic.avatar}}"></image>
+            <text>{{basic.name}}</text>
+            <text>{{item.updated_at}}</text>
+            <view>
+                <text>{{item.name}}</text>   
+            </view>
+            <view>
+                <text>{{item.like_counts}}</text>
+                <text>{{item.like_guests}}</text>
+            </view>
+            <view>
+                <block wx:for="{{item.affair_images}}">
+                    <image class="pic" src="{{item.pic}}" />
+                </block>
+            </view>
+            <view>
+                <block wx:for="{{item.affair_comments}}">
+                    <view>
+                        <image class="pic" src="{{item.guest.avatar}}" />
+                        <text>{{item.content}}</text>
+                    </view>
+                </block>
+            </view>
+        </view>
+
+        <form bind:submit="formSubmit">
+            <input placeholder='评论' name='content'></input>
+            <input hidden="{{true}}" name='affair_id' value="{{item.id}}"></input>
+            <button form-type="submit" wx:if="{{authorized}}" class="submit">评论</button>
+            <button wx:if="{{!authorized}}" open-type="getUserInfo" bind:getuserinfo="onGetUserInfo" class="submit">
+                评论(未登录)
+            </button>
+        </form>
+    </block>
+</view>
+
+<v-support />
+<v-loading class="loading-center" wx:if="{{false}}" />

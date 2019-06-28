@@ -1,0 +1,7 @@
+<view>{{product.name}}</view>
+<view>{{product.price}}</view>
+<view>{{product.description}}</view>
+
+<block wx:for="{{product.product_images}}">
+    <image src="{{item.pic}}" />
+</block>

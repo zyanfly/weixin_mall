@@ -1,0 +1,12 @@
+{
+  "usingComponents": {
+      "v-carousel": "/components/carousel/index",
+      "v-location": "/components/location/index",
+      "v-pay": "/components/pay/index",
+      "v-product": "/components/home-product/index",
+      "v-loading": "/components/loading/index",
+      "v-support": "/components/support/index",
+      "v-merchant-image": "/components/merchant-image/index",
+      "v-merchant-introduction": "/components/merchant-introduction/index"
+  }
+}

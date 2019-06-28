@@ -1,0 +1,3 @@
+<block wx:for="{{merchant_images}}">
+    <image src="{{item.pic}}" />
+</block>

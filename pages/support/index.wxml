@@ -1,0 +1,13 @@
+<view>
+  <view class="title">
+    <text>让我们联系你制作</text>
+  </view>
+  <view class="form_wrapper">
+    <form bind:submit="formSubmit">
+      <input placeholder='您的姓名' name='name' value="{{name}}"></input>
+      <input type="number" placeholder='您的手机号码' name='contact' value="{{contact}}"></input>
+      <text class="ask_time">我们将在工作日24小时之内联系你</text>
+      <button class="submit_btn" form-type="submit">提交</button>
+    </form>
+  </view>
+</view>

@@ -1,0 +1,7 @@
+<view class="container">
+    <view>店铺照片</view>
+    <view bind:tap="onTap">全部</view>
+</view>
+<block wx:for="{{merchant_images}}">
+    <image src="{{item.pic}}" />
+</block>

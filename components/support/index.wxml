@@ -1,0 +1,5 @@
+<view bind:tap="getSupport" class="footer">
+  <text class="footer_text">
+    量智科技提供小程序开发支持 >
+  </text>
+</view>

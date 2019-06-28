@@ -1,0 +1,9 @@
+.pic {
+   width: 50rpx; 
+   height: 50rpx;
+   margin-bottom:20rpx;
+}
+
+.affair_container {
+    border-bottom:1rpx solid #ddd;
+}
