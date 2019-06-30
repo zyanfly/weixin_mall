@@ -1,7 +1,7 @@
 import {
     HTTP
 }
-    from '../utils/http.js'
+from '../utils/http.js'
 
 class GuestModel extends HTTP {
     data = null

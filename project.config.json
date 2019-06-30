@@ -14,7 +14,7 @@
 	},
 	"compileType": "miniprogram",
 	"libVersion": "2.7.2",
-	"appid": "wx5f97133cf84d829b",
+	"appid": "wx6d75c38ee4586bf2",
 	"projectname": "mall",
 	"debugOptions": {
 		"hidedInDevtools": []
@@ -40,7 +40,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 3,
+			"current": 5,
 			"list": [
 				{
 					"id": -1,
@@ -67,6 +67,21 @@
 					"id": -1,
 					"name": "mall",
 					"pathName": "pages/mall/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 4,
+					"name": "directly-pay",
+					"pathName": "pages/directly-pay/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "support",
+					"pathName": "pages/support/index",
+					"query": "",
 					"scene": null
 				}
 			]

@@ -28,6 +28,10 @@ Page({
             })
     },
 
+    onPullDownRefresh: function () {
+        wx.stopPullDownRefresh()
+    },
+
     onShareAppMessage: function () {
     }
 })
