@@ -1,9 +1,12 @@
 <view>
+  <view class="title">
+    <text>直接支付</text>
+  </view>
   <view class="form_wrapper">
     <form bind:submit="formSubmit">
-      <input placeholder='价格' name='price' value="{{price}}"></input>
-      <input placeholder='备注' name='remark' value="{{remark}}"></input>  
-      <button class="submit_btn" form-type="submit">确认买单</button>
+      <input type='digit' placeholder='价格' name='price' value="{{price}}"></input>
+      <input type='text' placeholder='备注' name='remark' value="{{remark}}"></input>
+      <button class="submit_btn" form-type="submit">提交</button>
     </form>
   </view>
 </view>
