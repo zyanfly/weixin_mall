@@ -22,32 +22,32 @@
         "list": [
             {
                 "pagePath": "pages/home/index",
-                "iconPath": "imgs/toolbar/home.png",
-                "selectedIconPath": "imgs/toolbar/home@selected.png",
+                "iconPath": "images/toolbar/home.png",
+                "selectedIconPath": "images/toolbar/home@selected.png",
                 "text": "首页"
             },
             {
                 "pagePath": "pages/mall/index",
-                "iconPath": "imgs/toolbar/shopping.png",
-                "selectedIconPath": "imgs/toolbar/shopping@selected.png",
+                "iconPath": "images/toolbar/shopping.png",
+                "selectedIconPath": "images/toolbar/shopping@selected.png",
                 "text": "商城"
             },
             {
                 "pagePath": "pages/affair/index",
-                "iconPath": "imgs/toolbar/chat.png",
-                "selectedIconPath": "imgs/toolbar/chat@selected.png",
+                "iconPath": "images/toolbar/chat.png",
+                "selectedIconPath": "images/toolbar/chat@selected.png",
                 "text": "动态"
             },
             {
                 "pagePath": "pages/cart/index",
-                "iconPath": "imgs/toolbar/cart.png",
-                "selectedIconPath": "imgs/toolbar/cart@selected.png",
+                "iconPath": "images/toolbar/cart.png",
+                "selectedIconPath": "images/toolbar/cart@selected.png",
                 "text": "购物车"
             },
             {
                 "pagePath": "pages/my/index",
-                "iconPath": "imgs/toolbar/my.png",
-                "selectedIconPath": "imgs/toolbar/my@selected.png",
+                "iconPath": "images/toolbar/my.png",
+                "selectedIconPath": "images/toolbar/my@selected.png",
                 "text": "我的"
             }
         ],

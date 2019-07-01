@@ -1,14 +1,19 @@
 import {
     ProductSortModel
 } from '../../models/product_sort'
+import {
+    ProductModel
+} from '../../models/product'
 
+const productModel = new ProductModel()
 const productSortModel = new ProductSortModel()
 
 Page({
     data: {
         product_sorts: null,
         products: null,
-        loadingCenter: true
+        loadingCenter: true,
+        searching: false
     },
 
     onLoad: function () {
@@ -22,7 +27,7 @@ Page({
                     product_sorts: res,
                     
                 })
-                return productSortModel.getProductFirstSort()
+                return productModel.getProducts()
             })
             .then(res => {
                 this.setData({
@@ -44,9 +49,20 @@ Page({
         })
     },
 
+    onSearching(event) {
+        this.setData({
+            searching: true
+        })
+    },
+
+    onCancel(event) {
+        this.setData({
+            searching: false
+        })
+    },
+
     onTapSort(event) {
         const id = event.target.dataset.id
-        console.log(id)
         productSortModel.getProductSort(id)
             .then(res => {
                 this.setData({
@@ -58,8 +74,20 @@ Page({
                 console.log(res);
             })
     },
-    
 
+    onTapAllProducts(event){
+        productModel.getProducts()
+            .then(res => {
+                this.setData({
+                    products: res,
+
+                })
+            })
+            .catch(res => {
+                console.log(res);
+            })
+    },
+    
     onPullDownRefresh: function () {
         this._loadData(() => {
             wx.stopPullDownRefresh()
