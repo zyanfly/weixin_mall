@@ -1,51 +1,63 @@
 import {
-    paginationBev
-} from '../behaviors/pagination.js'
+    KeywordModel
+} from '../../models/keyword'
+import {
+    ProductModel
+} from '../../models/product'
 
+const productModel = new ProductModel()
+const keywordModel = new KeywordModel()
 
 Component({
-    /**
-     * 组件的属性列表
-     */
-    behaviors: [paginationBev],
     properties: {
-        more: {
-            type: String,
-            observer: 'loadMore'
-            // true, true, true,
-        }
     },
 
-    /**
-     * 组件的初始数据
-     */
     data: {
         historyWords: [],
         hotWords: [],
         searching: false,
+        dataArray: [],
         q: '',
         loading: false,
         loadingCenter: false
     },
 
     attached() {
-        
+        this.setData({
+            historyWords: keywordModel.getHistory()
+        })
+
+        keywordModel.getHotWords().then(res => {
+            this.setData({
+                hotWords: res
+            })
+        })
     },
 
-    /**
-     * 组件的方法列表
-     */
     methods: {
-        
-
-
         onCancel(event) {
-            this.initialize()
             this.triggerEvent('cancel', {}, {})
         },
 
+        onConfirm(event) {
+            this._showResult()
+            this._showLoadingCenter()
+            const q = event.detail.value || event.detail.text
+            this.setData({
+                q
+            })
+            productModel.search(q, 0)
+                .then(res => {
+                    this.setData({
+                        dataArray: res
+                    })
+                    keywordModel.addToHistory(q)
+                    this._hideLoadingCenter()
+                })
+        },
+
         onDelete(event) {
-            this.initialize()
+            // this.initialize()
             this._closeResult()
         },
 
@@ -73,12 +85,5 @@ Component({
                 q: ''
             })
         }
-
-        // onReachBottom(){
-        //   console.log(123123)
-        // }
-
-        // scroll-view | Page onReachBottom
-
     }
 })

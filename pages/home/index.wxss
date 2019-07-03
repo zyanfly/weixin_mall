@@ -19,3 +19,16 @@
 .usermotto {
   margin-top: 200px;
 }
+
+.products-container {
+    margin-top: 10rpx;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 0 90rpx;
+}
+
+.products-container v-product{
+    margin-bottom: 10rpx;
+}

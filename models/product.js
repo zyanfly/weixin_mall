@@ -19,7 +19,16 @@ class ProductModel extends HTTP {
         return this.request({
             url: 'products/' + id
         })
-    }    
+    }
+    search(q, start) {
+        return this.request({
+            url: 'products/search?',
+            data: {
+                q: q,
+                start: start
+            }
+        })
+    }      
 }
 
 export {
