@@ -1,8 +1,14 @@
 <v-carousel carousels="{{carousels}}" />
 <v-pay name="{{basic.name}}" />
-<v-location location="{{location}}" phone="{{basic.phone}}"/>
-<v-product products="{{products}}" />
-<v-merchant-introduction basic="{{basic}}"/>
+<v-location location="{{location}}" phone="{{basic.phone}}" />
+
+<view class="products-container">
+    <view>精品推荐</view>
+    <block wx:key="id" wx:for="{{products}}">
+        <v-product product="{{item}}" />
+    </block>
+</view>
+<v-merchant-introduction basic="{{basic}}" />
 <v-merchant-image merchant_images="{{merchant_images}}" />
 <v-support />
-<v-loading class="loading-center" wx:if="{{loadingCenter}}"/>
+<v-loading class="loading-center" wx:if="{{loadingCenter}}" />

@@ -1,0 +1,5 @@
+<view bind:tap="onTapAllProducts">全部</view>
+
+<block wx:for="{{product_sorts}}">
+    <view data-id="{{item.id}}" bind:tap="onTapSort">{{item.name}}</view>
+</block>

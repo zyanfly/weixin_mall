@@ -1,0 +1,8 @@
+<view bind:tap="onTap" class="container">
+    <image src="{{product.pic}}"></image>
+    <view class="description">
+        <text class='title'>{{product.name}}</text>
+        <text class='author'>{{product.name}}</text>
+        <text class="footer">喜欢</text>
+    </view>
+</view>

@@ -1,5 +1,9 @@
 {
   "usingComponents": {
-      "v-search": "/components/search/index"
+      "v-search": "/components/search/index",
+      "v-product": "/components/product/index",
+      "v-support": "/components/support/index",
+      "v-sort": "/components/product-sort/index",
+      "v-loading": "/components/loading/index"
   }
 }

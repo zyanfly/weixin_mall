@@ -1,27 +1,19 @@
-<!-- for 循环 wx:for -->
 <view wx:if="{{!searching}}" class="container">
     <view class="header">
         <view class='box' bind:tap="onSearching">
             <image src="/images/icon/search.png" />
-            <text>搜索书籍</text>
+            <text>搜索商品</text>
         </view>
     </view>
     <view class="sub-container">
-        商品显示页面
+        <view class="products-container">
+            <block wx:key="id" wx:for="{{products}}">
+                <v-product product="{{item}}" />
+            </block>
+        </view>
     </view>
 </view>
 
-<v-search more="{{more}}" bind:cancel="onCancel" wx:if="{{searching}}" />
-
-
-
-<!-- <view bind:tap="onTapAllProducts">全部</view>
-<block wx:for="{{product_sorts}}">
-    <view data-id="{{item.id}}" bind:tap="onTapSort">{{item.name}}</view>
-</block>
-
-<block wx:for="{{products}}">
-    <view><image data-id="{{item.id}}" bind:tap="onTap" src="{{item.pic}}" /></view>
-    <view>{{item.name}}</view>
-    <view>{{item.price}}</view>
-</block> -->
+<v-search bind:cancel="onCancel" wx:if="{{searching}}" />
+<v-loading class="loading-center" wx:if="{{loadingCenter}}" />
+<v-support />
