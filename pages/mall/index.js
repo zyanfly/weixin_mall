@@ -41,6 +41,33 @@ Page({
             })
     },
 
+    onTapSort(event) {
+        const id = event.detail.id
+        productSortModel.getProductSort(id)
+            .then(res => {
+                this.setData({
+                    products: res,
+
+                })
+            })
+            .catch(res => {
+                console.log(res);
+            })
+    },
+
+    onTapAllProducts(event) {
+        productModel.getProducts()
+            .then(res => {
+                this.setData({
+                    products: res,
+
+                })
+            })
+            .catch(res => {
+                console.log(res);
+            })
+    },
+
     onSearching(event) {
         this.setData({
             searching: true

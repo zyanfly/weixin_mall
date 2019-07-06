@@ -19,7 +19,8 @@ Component({
         dataArray: [],
         q: '',
         loading: false,
-        loadingCenter: false
+        loadingCenter: false,
+        noneResult: false
     },
 
     attached() {
@@ -53,6 +54,11 @@ Component({
                     })
                     keywordModel.addToHistory(q)
                     this._hideLoadingCenter()
+                    if (this.data.dataArray.length == 0){
+                        this.setData({
+                            noneResult: true
+                        })
+                    }
                 })
         },
 
