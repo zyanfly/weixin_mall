@@ -2,7 +2,6 @@
     <image src="{{product.pic}}"></image>
     <view class="description">
         <text class='title'>{{product.name}}</text>
-        <text class='author'>{{product.name}}</text>
-        <text class="footer">喜欢</text>
+        <text class='author'>{{product.current_price}}</text>
     </view>
 </view>

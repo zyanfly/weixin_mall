@@ -5,6 +5,9 @@
             <text>搜索商品</text>
         </view>
     </view>
+    <view class="product_sorts_container">
+        <v-sort product_sorts="{{product_sorts}}" bind:tapsort="onTapSort" bind:tapall="onTapAllProducts"/>
+    </view>
     <view class="sub-container">
         <view class="products-container">
             <block wx:key="id" wx:for="{{products}}">
@@ -16,4 +19,3 @@
 
 <v-search bind:cancel="onCancel" wx:if="{{searching}}" />
 <v-loading class="loading-center" wx:if="{{loadingCenter}}" />
-<v-support />

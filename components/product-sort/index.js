@@ -1,12 +1,8 @@
 import {
-    ProductSortModel
-} from '../../models/product_sort'
-import {
     ProductModel
 } from '../../models/product'
 
 const productModel = new ProductModel()
-const productSortModel = new ProductSortModel()
 
 Component({
     properties: {
@@ -20,30 +16,11 @@ Component({
     methods: {
         onTapSort(event) {
             const id = event.target.dataset.id
-            console.log(id)
-            productSortModel.getProductSort(id)
-                .then(res => {
-                    this.setData({
-                        products: res,
-
-                    })
-                })
-                .catch(res => {
-                    console.log(res);
-                })
+            this.triggerEvent('tapsort', {id: id}, {})
         },
 
         onTapAllProducts(event) {
-            productModel.getProducts()
-                .then(res => {
-                    this.setData({
-                        products: res,
-
-                    })
-                })
-                .catch(res => {
-                    console.log(res);
-                })
+            this.triggerEvent('tapall', {}, {})
         }
     }
 })
