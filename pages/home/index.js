@@ -48,6 +48,7 @@ Page({
                 this.setData({
                     basic: res,
                 })
+                console.log(res);
                 return locationModel.getLocation()
             })
             .then(res => {

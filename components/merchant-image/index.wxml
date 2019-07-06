@@ -1,7 +1,16 @@
 <view class="container">
-    <view>店铺照片</view>
-    <view bind:tap="onTap">全部</view>
+    <view class="title">
+        <view ></view>
+        <text>店铺照片</text>
+        <view bind:tap="onTap" class="title_right">
+            全部
+            <image src="/images/icon/right.png" />
+        </view>
+    </view>
+
+    <view class="images">
+        <block wx:for="{{merchant_images}}">
+            <image mode="aspectFill" src="{{item.pic}}" />
+        </block>
+    </view>
 </view>
-<block wx:for="{{merchant_images}}">
-    <image src="{{item.pic}}" />
-</block>

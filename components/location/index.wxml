@@ -1,7 +1,18 @@
-<view class="location-container">
-  <view bind:tap="redirectAddress">{{location.address}}</view>
-  <view bind:tap="makePhone">{{phone}}</view>
-  <view>
-    <button open-type='contact'>客服</button>
+<view class="location_container">
+  <view bind:tap="redirectAddress" class="local_left">
+    <image src="/images/icon/position.png" />
+    <view class="location_addres">
+      {{location.address}}
+    </view>
+  </view>
+  <view class="local_right">
+    <!-- <view bind:tap="makePhone"></view> -->
+    <image bind:tap="makePhone" src="/images/icon/phone.png" />
+    <button open-type="contact">
+      <image open-type="contact" src="/images/icon/wechat.png" />
+    </button>
+    <!-- <view>
+      <button open-type='contact'>客服</button>
+    </view> -->
   </view>
 </view>

@@ -1,6 +1,29 @@
-<view>商户介绍</view>
-<view>{{basic.duty}}</view>
-<view>{{basic.description}}</view>
-<block wx:for="{{basic.merchant_basic_images}}">
-    <image src="{{item.pic}}" />
-</block>
+
+<view class="i_container">
+    <view class="i_title">商户介绍</view>
+    <!-- <view>{{basic.duty}}</view> -->
+    <!-- <view>{{basic.description}}</view> -->
+    <view class="i_taps">
+        <view class="i_time">
+            <image src="/images/icon/time.png" />
+            <text >8:00-22:00</text>
+        </view>
+        <view class="i_treatment">
+            <image src="/images/icon/apps.png" />
+            <text >Wi-Fi</text>
+            <text >停车位</text>
+            <text >支付宝支付</text>
+            <text >微信支付</text>
+        </view>
+        <view >
+            <image src="/images/icon/text.png" />
+            <text >商户介绍</text>
+        </view>
+    </view>
+    <view wx:for="{{basic.merchant_basic_images}}" class="i_image">
+        <image mode="aspectFill" src="{{item.pic}}" />
+        <text >
+            {{item.name}}
+        </text>
+    </view>
+</view>
