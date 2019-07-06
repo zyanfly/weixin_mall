@@ -1,4 +1,43 @@
-.location-container{
+.location_container{
     display: flex;
+    padding:20rpx;
     justify-content: space-between;
+    align-items:center;
+    background:#fff;
+    margin-bottom:20rpx;
+}
+.local_left{
+    display: flex;
+    flex-basis: 70%;
+    align-items: center;
+    font-size:14px;
+}
+.local_left image{
+    width:50rpx;
+    height:50rpx;
+    margin:0 10rpx;
+}
+
+.local_left .location_addres{
+    flex-basis: 80%;
+}
+
+.local_right{
+    display:flex;
+}
+
+.local_right image{
+    width:50rpx;
+    height:50rpx;
+    margin:0 20rpx;
+}
+.local_right button{
+    border:none;
+    background-color:transparent;
+    padding:0;
+    margin:0;
+    line-height:0;
+}
+.local_right button:after,.local_right button:before{
+    border:none;
 }

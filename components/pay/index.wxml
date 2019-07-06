@@ -1,4 +1,4 @@
 <view class="pay-container">
   <text>{{name}}</text>
-  <text bind:tap="onTap">买单</text>
+  <text bind:tap="onTap" class="pay_btn">买单</text>
 </view>

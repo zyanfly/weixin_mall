@@ -1,1 +1,45 @@
-/* components/merchant-introduction/index.wxss */
+.i_container{
+  background-color:#fff;
+  margin-bottom:20rpx;
+  padding:0 30rpx;
+  padding-bottom:40rpx;
+}
+
+.i_title{
+  font-size:16px;
+  text-align:center;
+  padding:20rpx 0;
+  border-bottom:1px solid #ddd;
+}
+
+.i_taps{
+  /* padding:30rpx; */
+  font-size:14px;
+}
+
+.i_taps > view{
+  display:flex;
+  align-items:center;
+  padding:10rpx 0;
+}
+
+.i_taps>view>image{
+  width:36rpx;
+  height:36rpx;
+  margin-right:20rpx;
+}
+
+.i_treatment text{
+  display:inline-block;
+  border:1px solid #FF9900;
+  color:#FF9900;
+  font-size:10px;
+  padding:0 20rpx;
+  margin-right:15rpx;
+  border-radius:3px;
+}
+
+.i_image image{
+  width:100%;
+  margin:20rpx 0;
+}

@@ -1,0 +1,10 @@
+<view class="products-container">
+    <view class="products_title">精品推荐</view>
+    <view class="recommend_list">
+        <view class="recommend_item" wx:key="id" wx:for="{{products}}">
+            <image src="{{item.pic}}" mode="aspectFill"/>
+            <text class="disc">{{item.description}}</text>
+            <text class="price">¥{{item.price}}</text>
+        </view>
+    </view>
+</view>
