@@ -12,7 +12,7 @@ Page({
     },
 
     formSubmit: function (e) {
-        if(!this.data.price){return};
+        if (!this.data.price) { return };
         payModel.createDirectlyPay(e.detail.value.price, e.detail.value.remark)
             .then(res => {
                 console.log(res)
@@ -35,35 +35,41 @@ Page({
             })
     },
 
-    showActionSheet(){
+    showActionSheet() {
         wx.showActionSheet({
-            itemList:[
+            itemList: [
                 '微信支付'
             ],
-            success:function(res){
+            success: function (res) {
                 console.log(res.tapIndex);
             }
         })
     },
-    getPrice(e){
+    getPrice(e) {
+        var price;
+        if (/^(\d?)+(\.\d{0,2})?$/.test(e.detail.value)) {
+            price = e.detail.value;
+        } else {
+            price = e.detail.value.substring(0, e.detail.value.length - 1);
+        }
         this.setData({
-            price:e.detail.value
+            price: price
         })
     },
-    getRemark(e){
+    getRemark(e) {
         this.setData({
-            remark:e.detail.value
+            remark: e.detail.value
         })
     },
 
     // TODO 还缺个获取支付方式的接口
     // 未来可能会有更多的支付方式，目前是写死的
-    getPayment(){
+    getPayment() {
 
     },
 
     // 买单记录
-    record(){
+    record() {
         console.log('进入买单记录页面')
     },
 
@@ -73,5 +79,5 @@ Page({
 
     onShareAppMessage: function () {
     }
-    
+
 })

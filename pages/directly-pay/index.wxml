@@ -1,10 +1,12 @@
+<wxs module="util" src="../../utils/number.wxs"></wxs>
+
 <view class="warning">买单仅限于到店支付，请确认金额后提交</view>
   <form bind:submit="formSubmit">
     <view class="items price">
       <text >支付金额</text>
       <view class="input_item">
         <text>¥</text>
-        <input  type="digit" name="price" value="{{price}}" bindinput="getPrice"/>
+        <input  type="digit" name="price" maxlength="10" value="{{price}}" bindinput="getPrice"/>
       </view>
     </view>
   
