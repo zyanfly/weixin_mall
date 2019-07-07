@@ -6,7 +6,7 @@
       <text >支付金额</text>
       <view class="input_item">
         <text>¥</text>
-        <input  type="digit" name="price" value="{{price}}" bindinput="getPrice"/>
+        <input  type="digit" name="price" maxlength="10" value="{{price}}" bindinput="getPrice"/>
       </view>
     </view>
   
