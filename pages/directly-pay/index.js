@@ -12,6 +12,7 @@ Page({
     },
 
     formSubmit: function (e) {
+        if(!this.data.price){return};
         payModel.createDirectlyPay(e.detail.value.price, e.detail.value.remark)
             .then(res => {
                 console.log(res)
@@ -34,10 +35,43 @@ Page({
             })
     },
 
+    showActionSheet(){
+        wx.showActionSheet({
+            itemList:[
+                '微信支付'
+            ],
+            success:function(res){
+                console.log(res.tapIndex);
+            }
+        })
+    },
+    getPrice(e){
+        this.setData({
+            price:e.detail.value
+        })
+    },
+    getRemark(e){
+        this.setData({
+            remark:e.detail.value
+        })
+    },
+
+    // TODO 还缺个获取支付方式的接口
+    // 未来可能会有更多的支付方式，目前是写死的
+    getPayment(){
+
+    },
+
+    // 买单记录
+    record(){
+        console.log('进入买单记录页面')
+    },
+
     onPullDownRefresh: function () {
         wx.stopPullDownRefresh()
     },
 
     onShareAppMessage: function () {
     }
+    
 })
