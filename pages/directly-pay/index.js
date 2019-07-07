@@ -50,6 +50,11 @@ Page({
             price:e.detail.value
         })
     },
+    getRemark(e){
+        this.setData({
+            remark:e.detail.value
+        })
+    },
 
     // TODO 还缺个获取支付方式的接口
     // 未来可能会有更多的支付方式，目前是写死的
