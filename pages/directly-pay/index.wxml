@@ -1,3 +1,5 @@
+<wxs module="util" src="../../utils/number.wxs"></wxs>
+
 <view class="warning">买单仅限于到店支付，请确认金额后提交</view>
   <form bind:submit="formSubmit">
     <view class="items price">
