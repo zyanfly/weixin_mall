@@ -1,11 +1,32 @@
 Component({
     properties: {
         basic: {
-            type: Object
+            type: Object,
+            observer:function(newVal, oldVal){
+                let list = [];
+                for(let i = 0;i<newVal.merchant_basic_images.length;i++){
+                    list.push(newVal.merchant_basic_images[i].pic);
+                }
+                this.setData({
+                    imageList:list
+                })
+            }
+            
         }
     },
 
-    data: {},
+    data: {
+        imageList:Array
+    },
 
-    methods: {}
+    methods: {
+        showImage(e){
+            console.log(e.currentTarget.dataset.src);
+            console.log(this.data.imageList);
+            wx.previewImage({
+                current:e.currentTarget.dataset.src,
+                urls: e.currentTarget.dataset.list
+            })
+        }
+    }
 })

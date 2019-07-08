@@ -21,7 +21,7 @@
         </view>
     </view>
     <view wx:for="{{basic.merchant_basic_images}}" class="i_image">
-        <image mode="aspectFill" src="{{item.pic}}" />
+        <image mode="aspectFill" src="{{item.pic}}" data-list="{{imageList}}" data-src="{{item.pic}}" bind:tap="showImage"/>
         <text >
             {{item.name}}
         </text>
