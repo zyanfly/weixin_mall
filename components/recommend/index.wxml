@@ -3,7 +3,7 @@
     <view class="recommend_list">
         <view class="recommend_item" wx:key="id" wx:for="{{products}}">
             <image data-id="{{item.id}}" bind:tap="onTap" src="{{item.pic}}" mode="aspectFill"/>
-            <text class="disc">{{item.description}}</text>
+            <text class="disc">{{item.name}}</text>
             <text class="price">¥{{item.current_price}}</text>
         </view>
     </view>
