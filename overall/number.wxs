@@ -1,4 +1,4 @@
-var filter = function(obj){
+var filter = function (obj) {
 }
 
 module.exports.filter = filter;
