@@ -1,3 +1,5 @@
-<block wx:for="{{merchant_images}}">
-    <image src="{{item.pic}}" />
-</block>
+<view class="container">
+    <view class="img_wrapper" wx:for="{{merchant_images}}">
+        <image data-pic="{{item.pic}}" bind:tap="showImage" mode="aspectFill" src="{{item.pic}}" />
+    </view>
+</view>
