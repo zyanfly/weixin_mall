@@ -1,16 +1,22 @@
 <view class="container">
     <view class="title">
-        <view ></view>
+        <view></view>
         <text>店铺照片</text>
         <view bind:tap="onTap" class="title_right">
             全部
             <image src="/images/icon/right.png" />
         </view>
     </view>
-
-    <view class="images">
+    <!-- <view class="images">
         <block wx:for="{{merchant_images}}">
             <image mode="aspectFill" src="{{item.pic}}" />
         </block>
+    </view> -->
+    <view class="container home-container">
+        <swiper class="swiper" interval="4000" autoplay="{{false}}" circular="true" next-margin="10px" display-multiple-items="3">
+            <swiper-item wx:for="{{merchant_images}}" class="banner-item">
+                <image data-pic="{{item.pic}}" class="item-image" src="{{item.pic}}" bind:tap="showShop" mode="aspectFill" />
+            </swiper-item>
+        </swiper>
     </view>
 </view>
