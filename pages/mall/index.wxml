@@ -4,18 +4,32 @@
             <image src="/images/icon/search.png" />
             <text>搜索商品</text>
         </view>
+        <!-- 商品tabs -->
+        <scroll-view class="swiper-tab" scroll-x="{{true}}" scroll-left="{{scroll_left}}" scroll-with-animation="{{true}}">
+            <view wx:for="{{product_sorts}}" wx:key="index" class="swiper-tab-item {{currentTab==index?'active':''}}" data-current="{{index}}" bind:tap="clickTab">
+                {{item}}
+            </view>
+        </scroll-view>
     </view>
-    <view class="product_sorts_container">
+    <swiper class="swiper-content" current="{{currentTab}}" duration="300" bind:change="swiperTab" style="height:{{scrollHeight}}px;">
+        <swiper-item wx:for="{{products}}" wx:for-item="items" class="swiper_item" wx:key="index">
+            <scroll-view scroll-y="{{true}}" class="scroll-h">
+                        <view class="product_container">
+                            <v-product class="product_item" wx:for="{{items}}" wx:key="index" product="{{item}}" />
+                        </view>
+            </scroll-view>
+        </swiper-item>
+    </swiper>
+    <!-- <view class="product_sorts_container">
         <v-sort product_sorts="{{product_sorts}}" bind:tapsort="onTapSort" bind:tapall="onTapAllProducts"/>
-    </view>
-    <view class="sub-container">
+    </view> -->
+    <!-- <view class="sub-container">
         <view class="products-container">
             <block wx:key="id" wx:for="{{products}}">
                 <v-product product="{{item}}" />
             </block>
         </view>
-    </view>
+    </view> -->
 </view>
-
 <v-search bind:cancel="onCancel" wx:if="{{searching}}" />
 <v-loading class="loading-center" wx:if="{{loadingCenter}}" />
