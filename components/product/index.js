@@ -25,5 +25,10 @@ Component({
                 url: `/pages/product-detail/index?bid=${bid}`
             })
         }
+    },
+    observers:{
+        'product': function(product){
+            // console.log(product);
+        }
     }
 })

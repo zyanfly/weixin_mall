@@ -1,7 +1,7 @@
 <view bind:tap="onTap" class="container">
-    <image src="{{product.pic}}"></image>
-    <view class="description">
-        <text class='title'>{{product.name}}</text>
-        <text class='author'>{{product.current_price}}</text>
+    <view class="wrapper">
+        <image mode="aspectFill" src="{{product.pic}}"></image>
+        <view class='title'>{{product.name}}</view>
+        <view class='author'>￥{{product.current_price}}</view>
     </view>
 </view>

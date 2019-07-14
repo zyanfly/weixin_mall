@@ -8,6 +8,7 @@
     font-size:16px;
     border-bottom:1px solid #ddd;
     position: relative;
+    margin-bottom:10rpx;
 }
 .title_right{
     position: absolute;
