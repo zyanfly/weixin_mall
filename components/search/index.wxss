@@ -84,7 +84,7 @@
 .books-container v-book {
     margin-bottom: 25rpx;
 }
-
+/* 
 .books-container {
     width: 570rpx;
     margin-top: 100rpx;
@@ -93,6 +93,17 @@
     flex-wrap: wrap;
     padding: 0 90rpx 0 90rpx;
     justify-content: space-between;
+} */
+.books-container{
+    width:100%;
+    display:flex;
+    flex-wrap: wrap;
+    box-sizing: border-box;
+    padding:10rpx;
+    margin-top:102rpx;
+}
+.book{
+    flex-basis: 50%;
 }
 
 .loading {
