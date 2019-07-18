@@ -9,7 +9,10 @@
         "pages/directly-pay/index",
         "pages/support/index",
         "pages/merchant-images/index",
-        "components/product/index"
+        "components/product/index",
+        "pages/affair-detail/index",
+        "pages/affair-comment/index",
+        "pages/test/index"
     ],
     "window": {
         "navigationBarTitleText": "象湖大鸡腿",

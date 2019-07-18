@@ -1,23 +1,29 @@
 <view>
-    <block wx:for="{{affairs}}">
+    <block wx:for="{{affairs}}" wx:key="">
         <view class="affair_container">
+            <!--放置基本信息-->
             <image class="pic" src="{{basic.avatar}}"></image>
             <text>{{basic.name}}</text>
             <text>{{item.updated_at}}</text>
-            <view>
-                <text>{{item.name}}</text>   
+            <view bind:tap="tapContent" data-id="{{item.id}}">
+                <text>{{item.content}}</text>   
             </view>
+            <!--放置图片-->
             <view>
-                <text>{{item.like_counts}}</text>
-                <text>{{item.like_guests}}</text>
-            </view>
-            <view>
-                <block wx:for="{{item.affair_images}}">
+                <block wx:for="{{item.affair_images}}" wx:key="">
                     <image class="pic" src="{{item.pic}}" />
                 </block>
             </view>
+            <!--放置商品-->
             <view>
-                <block wx:for="{{item.affair_comments}}">
+              <view>{{item.product.name}}</view>
+              <view>{{item.product.current_price}}</view>
+              <image class="pic" src="{{item.product.pic}}"></image>
+              <view data-id="{{item.product.id}}" bind:tap="tapProduct">立即购买</view>
+            </view>
+            <!--放置评论-->
+            <view>
+                <block wx:for="{{item.affair_comments}}" wx:key="">
                     <view>
                         <image class="pic" src="{{item.guest.avatar}}" />
                         <text>{{item.content}}</text>
@@ -25,6 +31,10 @@
                 </block>
             </view>
         </view>
+        <!--放置点赞、评论、分享数量，点赞功能暂时未设计-->
+        <view>点赞</view>
+        <view>评论</view>
+        <view>分享</view>
 
         <form bind:submit="formSubmit">
             <input placeholder='评论' name='content'></input>

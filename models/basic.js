@@ -7,7 +7,7 @@ class BasicModel extends HTTP {
     data = null
     getBasic() {
         return this.request({
-            url: 'merchant_basic'
+            url: 'affair_basic'
         })
     }
 }
