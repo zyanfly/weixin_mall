@@ -7,6 +7,7 @@ import {
 
 const productModel = new ProductModel()
 const productSortModel = new ProductSortModel()
+const commen = require('../../utils/commen.js')
 
 Page({
     data: {
@@ -16,7 +17,9 @@ Page({
         loadingCenter: true,
         searching: false,
         currentTab: 0,
-        scroll_left: 0,
+        scroll_left: 0, // 滚动的距离
+        tabTrigger: 2, // 触发滚动tab的个数
+        otherHeight: 84 // tab标签栏+搜索栏的高度
     },
 
     onLoad: function () {
@@ -24,8 +27,16 @@ Page({
         // 获取手机视图的高度并设置为swipe的高度
         let systemInfo = wx.getSystemInfoSync();
         let windowHeight = systemInfo.windowHeight;
-        this.setData({
-            scrollHeight: windowHeight-84
+        let boxh = commen.getHeight('.box');
+        let tabh = commen.getHeight('.swiper-tab');
+        Promise.all([boxh,tabh]).then((res)=>{
+            let h = 0;
+            for(let i=0;i<res.length;i++){
+                h+=res[i];
+            }
+            this.setData({
+                scrollHeight: windowHeight - h
+            })
         })
     },
 
@@ -39,14 +50,14 @@ Page({
             .then(res => {
                 let sorts = [];
                 let products = [];
-                for(let i=0;i<res.length;i++){
+                for (let i = 0; i < res.length; i++) {
                     sorts.push(res[i].name);
                     products.push(res[i].products);
                 }
                 this.setData({
                     product_sorts: sorts,
                     products: products,
-                    loadingCenter:false
+                    loadingCenter: false
                 })
                 callback && callback();
             })
@@ -54,32 +65,32 @@ Page({
                 console.log(res);
             })
     },
-
+    
     /**
      * 点击tab，切换产品列表视图
      * @param {Event} event 触发事件对象
      */
-    clickTab(event){
-        if(event.target.dataset.current == this.data.currentTab)
+    clickTab(e) {
+        let eCurrent = e.target.dataset.current;
+        if (eCurrent == this.data.currentTab)
             return false;
         this.setData({
-            currentTab: event.target.dataset.current
+            currentTab: eCurrent
         })
     },
 
     /**
      * 滑动产品列表视图，联动tab
-     * @param {Event} event 触发事件对象
+     * @param {Event} e 触发事件对象
      */
-    swiperTab(event){
-        let current_tap = event.detail.current;
-        var left = 0;
-        if(current_tap>=2){
-            left = parseInt(current_tap-2)*100;
+    swiperTab(e) {
+        let eCurrent = e.detail.current,
+            left = 0;
+        if (eCurrent >= this.data.tabTrigger) {
+            left = parseInt(eCurrent - this.data.tabTrigger) * 100;
         }
-        let that =this;
-        that.setData({
-            currentTab: event.detail.current,
+        this.setData({
+            currentTab: eCurrent,
             scroll_left: left
         })
     },
@@ -103,7 +114,7 @@ Page({
             searching: false
         })
     },
-    
+
     /**
      * 下拉刷新
      */
