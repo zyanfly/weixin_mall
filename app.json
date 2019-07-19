@@ -11,8 +11,7 @@
         "pages/merchant-images/index",
         "components/product/index",
         "pages/affair-detail/index",
-        "pages/affair-comment/index",
-        "pages/test/index"
+        "pages/affair-comment/index"
     ],
     "window": {
         "navigationBarTitleText": "象湖大鸡腿",

@@ -87,7 +87,7 @@ Page({
                 authorized: true,
             })
         }
-        guestModel.updateGuest(userInfo.nickName, userInfo.avatarUrl);
+        guestModel.updateGuest(userInfo.nickName, userInfo.avatarUrl, userInfo.gender);
     },
 
     userAuthorized() {
