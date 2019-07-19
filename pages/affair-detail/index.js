@@ -31,7 +31,9 @@ Page({
             .then(res => {
                 this.setData({
                     affair: res,
-                    affair_comments: res.affair_comments
+                    affair_comments: res.affair_comments,
+                    affair_comments_count: res.affair_comments_count,
+                    affair_likes_count: res.affair_likes_count
                 })
                 return basicModel.getBasic()
             })
@@ -106,7 +108,8 @@ Page({
                     }
                 }
                 this.setData({
-                    affair_comments: this.data.affair_comments
+                    affair_comments: this.data.affair_comments,
+                    affair_comments_count: this.data.affair_comments_count-1
                 })
             }).
             catch(res => {
@@ -138,7 +141,8 @@ Page({
                     icon: "none"
                 })
                 this.setData({
-                    like_status: !this.data.like_status
+                    like_status: !this.data.like_status,
+                    affair_likes_count: this.data.affair_likes_count-1
                 })
             }).
             catch(res => {

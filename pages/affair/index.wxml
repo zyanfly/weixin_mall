@@ -21,7 +21,7 @@
                 <image class="pic" src="{{item.product.pic}}"></image>
                 <view data-id="{{item.product.id}}" bind:tap="tapProduct">立即购买</view>
             </view>
-            <!--放置点赞、评论、分享数量，点赞功能暂时未设计-->
+            <!--放置点赞、评论、分享数量，点赞功能暂时未设计(我来设计), 分享功能你来设计-->
             <view>
                 <view wx:if="{{authorized}}">点赞{{item.affair_likes_count}}</view>
                 <button wx:if="{{!authorized}}" open-type="getUserInfo" bind:getuserinfo="onGetUserInfo" class="submit">
@@ -41,7 +41,7 @@
                 </button>
             </view>
 
-            <!--放置评论-->
+            <!--放置评论, 评论至多显示三条，如果多余三条就显示更多，查看跳转到affair_detail-->
             <view>
                 <block wx:for="{{item.affair_comments}}" wx:key="">
                     <view>
@@ -51,16 +51,6 @@
                 </block>
             </view>
         </view>
-
-
-        <!-- <form bind:submit="formSubmit">
-            <input placeholder='评论' name='content'></input>
-            <input hidden="{{true}}" name='affair_id' value="{{item.id}}"></input>
-            <button form-type="submit" wx:if="{{authorized}}" class="submit">评论</button>
-            <button wx:if="{{!authorized}}" open-type="getUserInfo" bind:getuserinfo="onGetUserInfo" class="submit">
-                评论(未登录)
-            </button>
-        </form> -->
     </block>
 </view>
 
