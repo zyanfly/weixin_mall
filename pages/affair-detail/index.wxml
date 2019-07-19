@@ -1,0 +1,50 @@
+<view>
+    <view class="affair_container">
+        <image class="pic" src="{{basic.avatar}}"></image>
+        <text>{{basic.name}}</text>
+        <text>{{affair.updated_at}}</text>
+        <view bind:tap="tapContent" data-id="{{item.id}}">
+            <text>{{affair.content}}</text>
+        </view>
+        <view>
+            <block wx:for="{{affair.affair_images}}" wx:key="">
+                <image class="pic" src="{{item.pic}}" />
+            </block>
+        </view>
+        <view>
+            <block wx:for="{{affair_comments}}" wx:key="">
+                <view>
+                    <image class="pic" src="{{item.guest.avatar}}" />
+                    <text>{{item.content}}</text>
+                    <text bind:tap="deleteAffairComment" data-affair_comment_id="{{item.id}}" wx:if="{{authorized}}">删除</text>
+                </view>
+            </block>
+        </view>
+       <view>点赞列表</view>
+        <view>
+            <block wx:for="{{affair.affair_likes}}" wx:key="">
+                <image class="pic" src="{{item.guest.avatar}}" />
+                <view>{{item.guest.nickname}}</view>
+            </block>
+        </view>
+        <view>转发列表</view>
+    </view>
+</view>
+
+
+
+
+<button bind:tap="affairComment" data-affair_id="{{affair.id}}" wx:if="{{authorized}}" class="submit">评论</button>
+<button wx:if="{{!authorized}}" open-type="getUserInfo" bind:getuserinfo="onGetUserInfo" class="submit">
+    评论(未登录)
+</button>
+<button form-type="submit" wx:if="{{authorized}}"  wx:if="{{!like_status}}" data-affair_id="{{affair.id}}" bind:tap="tapLike">点赞</button>
+<button form-type="submit" wx:if="{{authorized}}" wx:if="{{like_status}}" data-affair_id="{{affair.id}}" bind:tap="deleteAffairLike">取消点赞</button>
+<button wx:if="{{!authorized}}" open-type="getUserInfo" bind:getuserinfo="onGetUserInfo" class="submit">
+    点赞(未登录)
+</button>
+<button form-type="submit" class="submit">分享</button>
+
+
+<v-support />
+<v-loading class="loading-center" wx:if="{{false}}" />

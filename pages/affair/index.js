@@ -21,6 +21,12 @@ Page({
 
     onLoad: function () {
         this._loadData();
+        console.log("on load")
+    },
+
+    onShow: function(){
+        console.log("on show")
+        this._loadData();
     },
 
     _loadData: function (callback) {
@@ -42,6 +48,20 @@ Page({
             catch(res => {
                 console.log(res);
             })
+    },
+
+    tapProduct: function(event){
+        const id = event.currentTarget.dataset.id
+        wx.navigateTo({
+            url: '/pages/product-detail/index?bid=' + id
+        })
+    },
+
+    tapContent: function(event){
+        const id = event.currentTarget.dataset.id
+        wx.navigateTo({
+            url: '/pages/affair-detail/index?id=' + id
+        })
     },
 
     onPullDownRefresh: function () {

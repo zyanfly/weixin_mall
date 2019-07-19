@@ -13,7 +13,8 @@ class HTTP {
             data: data,
             header: {
                 'content-type': 'application/json',
-                'appkey': config.appkey
+                'appkey': config.appkey,
+                'token': wx.getStorageSync('token')
             },
             success: (res) => {
                 const code = res.statusCode.toString()

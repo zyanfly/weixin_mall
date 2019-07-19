@@ -1,0 +1,5 @@
+<form bind:submit="formSubmit">
+    <input placeholder='评论' name='content'></input>
+    <input hidden="{{true}}" name='affair_id' value="{{affair_id}}"></input>
+    <button form-type="submit" class="submit">评论</button>
+</form>

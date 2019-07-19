@@ -40,5 +40,5 @@
 
     <v-loading class="loading-center" wx:if="{{loadingCenter}}"/>
     <v-loading class="loading" wx:if="{{loading}}"/>
-    <text wx:if="{{noneResult}}" class="empty-tip">没有搜索到书籍</text>
+    <text wx:if="{{noneResult}}" class="empty-tip">没有搜索到相关商品</text>
 </view>
