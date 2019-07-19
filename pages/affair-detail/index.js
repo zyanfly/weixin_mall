@@ -85,8 +85,9 @@ Page({
 
     affairComment: function (event) {
         const affair_id = event.currentTarget.dataset.affair_id
+        const from = event.currentTarget.dataset.from
         wx.redirectTo({
-            url: '/pages/affair-comment/index?id=' + affair_id
+            url: '/pages/affair-comment/index?id=' + affair_id + '&from=' + from
         })
     },
 

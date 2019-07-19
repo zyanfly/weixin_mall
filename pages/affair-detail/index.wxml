@@ -34,7 +34,7 @@
 
 
 
-<button bind:tap="affairComment" data-affair_id="{{affair.id}}" wx:if="{{authorized}}" class="submit">评论</button>
+<button bind:tap="affairComment" data-affair_id="{{affair.id}}" data-from="affair_detail" wx:if="{{authorized}}" class="submit">评论</button>
 <button wx:if="{{!authorized}}" open-type="getUserInfo" bind:getuserinfo="onGetUserInfo" class="submit">
     评论(未登录)
 </button>
