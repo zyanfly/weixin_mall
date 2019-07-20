@@ -22,3 +22,19 @@ page{
 .usermotto {
   margin-top: 200px;
 }
+
+.local_right image{
+    width:50rpx;
+    height:50rpx;
+    margin:0 20rpx;
+}
+.local_right button{
+    border:none;
+    background-color:transparent;
+    padding:0;
+    margin:0;
+    line-height:0;
+}
+.local_right button:after,.local_right button:before{
+    border:none;
+}

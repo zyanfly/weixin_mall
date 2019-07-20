@@ -1,11 +1,11 @@
 <view class="container">
-    <swiper indicator-dots="true" autoplay="true" class="swiper" interval="2000" circular="true">
-        <block wx:for="{{product.product_images}}" wx:key="">
-            <swiper-item class="banner-item">
-                <image class="item-image" src="{{item.pic}}" mode="aspectFill" />
-            </swiper-item>
-        </block>
-    </swiper>
+  <swiper indicator-dots="true" autoplay="true" class="swiper" interval="2000" circular="true">
+    <block wx:for="{{product.product_images}}" wx:key="">
+      <swiper-item class="banner-item">
+        <image class="item-image" src="{{item.pic}}" mode="aspectFill" />
+      </swiper-item>
+    </block>
+  </swiper>
 </view>
 
 <view>{{product.name}}</view>
@@ -16,54 +16,64 @@
 <!--商品详情-->
 <view>商品详情</view>
 <block wx:for="{{product.product_details}}" wx:key="">
-    <image class="pic" src="{{item.pic}}" />
+  <image class="pic" src="{{item.pic}}" />
 </block>
 
 <!--商品属性-->
 <view>商品属性</view>
 <block wx:for="{{product.product_attributes}}" wx:key="">
-    <view>
-        <text>{{item.name}}</text>
-        <text>{{item.content}}</text>
-    </view>
+  <view>
+    <text>{{item.name}}</text>
+    <text>{{item.content}}</text>
+  </view>
 </block>
 
 <!--评论列表-->
 <view>评论列表{{product_comments_count}}</view>
 <block wx:for="{{product_comments}}" wx:key="">
-    <view>
-        <text>{{item.guest.nickname}}</text>
-        <text>{{item.guest.gender}}</text>
-        <text>{{item.created_at}}</text>
-        <image class="pic" src="{{item.guest.avatar}}" />
-        <text>{{item.content}}</text>
-        <text bind:tap="deleteProductComment" data-product_comment_id="{{item.id}}" wx:if="{{authorized}}">删除</text>
-    </view>
+  <view>
+    <text>{{item.guest.nickname}}</text>
+    <text>{{item.guest.gender}}</text>
+    <text>{{item.created_at}}</text>
+    <image class="pic" src="{{item.guest.avatar}}" />
+    <text>{{item.content}}</text>
+    <text bind:tap="deleteProductComment" data-product_comment_id="{{item.id}}" wx:if="{{authorized}}">删除</text>
+  </view>
 </block>
 <!--点赞列表-->
 <view>点赞列表{{product_likes_count}}</view>
 <block wx:for="{{product_likes}}" wx:key="">
-    <view><image class="pic" src="{{item.guest.avatar}}" /></view>
+  <view>
+    <image class="pic" src="{{item.guest.avatar}}" />
+  </view>
 </block>
 
 <!--商品评论-->
 <view>商品评论</view>
 <form bind:submit="addProductComment" wx:if="{{authorized}}">
-    <input placeholder='评论' name='content'></input>
-    <input hidden="{{true}}" name='product_id' value="{{product.id}}"></input>
-    <button form-type="submit" class="submit">评论</button>
+  <input placeholder='评论' name='content'></input>
+  <input hidden="{{true}}" name='product_id' value="{{product.id}}"></input>
+  <button form-type="submit" class="submit">评论</button>
 </form>
 
 <button wx:if="{{!authorized}}" open-type="getUserInfo" bind:getuserinfo="onGetUserInfo" class="submit">
-    评论(未登录)
+  评论(未登录)
 </button>
 <!--商品点赞-->
-
 <view>商品点赞</view>
 <view wx:if="{{authorized}}">
-    <button form-type="submit" wx:if="{{!like_status}}" data-product_id="{{product.id}}" bind:tap="addProductLike">点赞</button>
-    <button form-type="submit" wx:if="{{like_status}}" data-product_id="{{product.id}}" bind:tap="deleteProductLike">取消点赞</button>
+  <button form-type="submit" wx:if="{{!like_status}}" data-product_id="{{product.id}}" bind:tap="addProductLike">点赞</button>
+  <button form-type="submit" wx:if="{{like_status}}" data-product_id="{{product.id}}" bind:tap="deleteProductLike">取消点赞</button>
 </view>
 <button wx:if="{{!authorized}}" open-type="getUserInfo" bind:getuserinfo="onGetUserInfo" class="submit">
-    点赞(未登录)
+  点赞(未登录)
 </button>
+
+<!--底部内容，依次是客服，收藏(修改主页为收藏)，购物车，加入购物车，立即购买-->
+<button open-type="contact">
+  <image open-type="contact" src="/images/icon/wechat.png" />
+</button>
+<view>收藏</view>
+<view>购物车</view>
+<view>加入购物车</view>
+<view>立即购买</view>
