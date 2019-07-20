@@ -3,6 +3,7 @@ Component({
         basic: {
             type: Object,
             observer:function(newVal, oldVal){
+                console.log(newVal)
                 let list = [];
                 for(let i = 0;i<newVal.merchant_basic_images.length;i++){
                     list.push(newVal.merchant_basic_images[i].pic);
