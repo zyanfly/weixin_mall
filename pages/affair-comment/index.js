@@ -20,7 +20,7 @@ Page({
     formSubmit: function(e) {
         affairModel.createAffairComment(e.detail.value.affair_id, e.detail.value.content)
             .then(res => {
-                if(this.data.from == "affairs"){
+                if (this.data.from == "affairs") {
                     wx.switchTab({
                         url: '/pages/affair/index'
                     })
