@@ -1,9 +1,147 @@
-.pic {
-   width: 50rpx; 
-   height: 50rpx;
-   margin-bottom:20rpx;
-}
 
 .affair_container {
-    border-bottom:1rpx solid #ddd;
+    border-bottom:20rpx solid #f3f3f3;
+    padding:30rpx;
+    padding-bottom:0;
+    box-sizing: border-box;
+}
+
+/* 商户信息 */
+.header{
+    display:flex;
+    align-items:center;
+}
+.header_pic {
+    width: 70rpx; 
+    height: 70rpx;
+    margin-right:26rpx;
+    /* margin-bottom:20rpx; */
+}
+.name_time{
+    display:flex;
+    flex-direction: column;
+}
+.name{
+    font-size:16px;
+    color:#667494;
+}
+.time{
+    font-size:12px;
+    color:#888888;
+}
+
+/* 介绍 */
+.introduce{
+    margin:20rpx 0;
+    font-size:14px;
+}
+
+/* 图片展示 */
+.banner{
+    display:flex;
+    flex-wrap: wrap;
+    box-sizing: border-box;
+}
+.one .prodpic_wrap{
+    width:100%;
+}
+.two .prodpic_wrap{
+    width:50%;
+}
+.two image{
+    height:321rpx;
+}
+.nomal .prodpic_wrap{
+    width:33.3333%;
+}
+.nomal image{
+    height:210rpx;
+}
+.prodpic_wrap{
+    padding:10rpx;
+    box-sizing: border-box;
+}
+.prodpic_wrap image{
+    width:100%;
+}
+/* 购买商品 */
+.product{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:20rpx;
+    background-color:#f1f1f1;
+}
+.p_left{
+    display:flex;
+}
+.p_name{
+    font-size:14px;
+}
+.p_price{
+    font-size:12px;
+    color:#FF9900;
+}
+.p_pic{
+    width:100rpx;
+    height:100rpx;
+    margin-right:20rpx;
+}
+.buy{
+    background-color:#FF9900;
+    color:#fff;
+    border-radius:50px;
+    font-size:12px;
+    padding:10rpx 20rpx;
+    align-self: flex-end;
+}
+
+/* 评论标题 */
+.c_title{
+    display:flex;
+    align-items:center;
+    justify-content: space-between;
+    font-size:12px;
+    padding:10rpx;
+    border-bottom:1px solid #D0D0D7;
+}
+.c_title_left{
+    color:#aaa;
+}
+.c_title_right{
+    display:flex;
+    align-items:center;
+}
+.c_title_right image{
+    width:32rpx;
+    height:32rpx;
+    margin-right:10rpx;
+}
+.like{
+    margin-right:20rpx;
+}
+/* 评论列表 */
+.comments{
+    font-size:12px;
+    padding:30rpx 10rpx;
+}
+.c_item{
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+}
+.c_name{
+    color:#2B59BC;
+}
+/* 评论按钮 */
+.remark{
+    height:50rpx;
+    line-height:50rpx;
+    font-size:12px;
+    color:#aaa;
+    border-radius:0;
+    text-align:left;
+}
+.remark:after{
+    border-radius:0;
 }

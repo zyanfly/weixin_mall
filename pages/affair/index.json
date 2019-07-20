@@ -2,6 +2,8 @@
     "navigationBarTitleText": "动态",
     "usingComponents": {
         "v-loading": "/components/loading/index",
-        "v-support": "/components/support/index"
+        "v-support": "/components/support/index",
+        "v-like": "/components/like/index",
+        "v-share": "/components/share/index"
     }
 }

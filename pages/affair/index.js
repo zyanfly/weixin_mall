@@ -16,7 +16,9 @@ Page({
     data: {
         loadingCenter: true,
         authorized: false,
-        userInfo: null
+        userInfo: null,
+        affairs: null,
+        basic: null
     },
 
     onLoad: function () {
@@ -60,7 +62,7 @@ Page({
     affairComment: function (event) {
         const affair_id = event.currentTarget.dataset.affair_id
         const from = event.currentTarget.dataset.from
-        wx.redirectTo({
+        wx.navigateTo({
             url: '/pages/affair-comment/index?id=' + affair_id + '&from=' + from
         })
     },
@@ -105,5 +107,40 @@ Page({
                 }
             }
         })
+    },
+    // 展示图片
+    showImage(e){
+        let id = e.target.dataset.id;
+        let urls = [];
+        let list = this.data.affairs;
+        for(let i=0;i<list.length;i++){
+            if(list[i].id===id){
+                for(let j=0;j<list[i].affair_images.length;j++)
+                urls.push(list[i].affair_images[j].pic)
+            }
+        }
+
+        wx.previewImage({
+            current: e.target.dataset.url,
+            urls:urls
+        })
+    },
+
+    // 分享
+    onShareAppMessage(e){
+        console.log(e);
+        if(e.from === 'button'){
+            console.log('来自页面button')
+        }
+        return {
+            title:'test',
+            path:'pages/affair-detailindex?id=',
+            success(res){
+                console.log('success')
+            },
+            fail(res){
+                console.log('fail')
+            }
+        }
     }
 })

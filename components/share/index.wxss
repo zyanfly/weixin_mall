@@ -1,0 +1,11 @@
+.container{
+  background:transparent;
+  display:flex;
+  align-items:center;
+  font-size:inherit;
+  padding:10rpx;
+  line-height:inherit;
+}
+.container:after{
+  border:none;
+}
