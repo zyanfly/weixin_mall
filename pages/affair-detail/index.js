@@ -54,7 +54,6 @@ Page({
                 })
                 callback && callback();
             })
-
             .catch(res => {
                 console.log(res);
             })

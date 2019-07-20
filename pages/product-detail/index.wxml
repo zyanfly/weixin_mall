@@ -41,6 +41,10 @@
     </view>
 </block>
 <!--点赞列表-->
+<view>点赞列表{{product_likes_count}}</view>
+<block wx:for="{{product_likes}}" wx:key="">
+    <view><image class="pic" src="{{item.guest.avatar}}" /></view>
+</block>
 
 <!--商品评论-->
 <view>商品评论</view>
@@ -53,5 +57,13 @@
 <button wx:if="{{!authorized}}" open-type="getUserInfo" bind:getuserinfo="onGetUserInfo" class="submit">
     评论(未登录)
 </button>
-
 <!--商品点赞-->
+
+<view>商品点赞</view>
+<view wx:if="{{authorized}}">
+    <button form-type="submit" wx:if="{{!like_status}}" data-product_id="{{product.id}}" bind:tap="addProductLike">点赞</button>
+    <button form-type="submit" wx:if="{{like_status}}" data-product_id="{{product.id}}" bind:tap="deleteProductLike">取消点赞</button>
+</view>
+<button wx:if="{{!authorized}}" open-type="getUserInfo" bind:getuserinfo="onGetUserInfo" class="submit">
+    点赞(未登录)
+</button>
