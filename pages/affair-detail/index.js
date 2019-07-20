@@ -31,7 +31,12 @@ Page({
             .then(res => {
                 this.setData({
                     affair: res,
-                    affair_comments: res.affair_comments
+                    affair_comments: res.affair_comments,
+                    affair_likes: res.affair_likes,
+                    affair_shares: res.affair_shares,
+                    affair_comments_count: res.affair_comments_count,
+                    affair_likes_count: res.affair_likes_count,
+                    affair_shares_count: res.affair_shares_count,
                 })
                 return basicModel.getBasic()
             })
@@ -60,10 +65,11 @@ Page({
         if (userInfo) {
             this.setData({
                 authorized: true,
+                userInfo: userInfo
             })
         }
         guestModel.updateGuest(userInfo.nickName, 
-            userInfo.avatarUrl);
+            userInfo.avatarUrl, userInfo.gender);
     },
 
     userAuthorized() {
@@ -85,8 +91,9 @@ Page({
 
     affairComment: function (event) {
         const affair_id = event.currentTarget.dataset.affair_id
+        const from = event.currentTarget.dataset.from
         wx.redirectTo({
-            url: '/pages/affair-comment/index?id=' + affair_id
+            url: '/pages/affair-comment/index?id=' + affair_id + '&from=' + from
         })
     },
 
@@ -105,7 +112,8 @@ Page({
                     }
                 }
                 this.setData({
-                    affair_comments: this.data.affair_comments
+                    affair_comments: this.data.affair_comments,
+                    affair_comments_count: this.data.affair_comments_count-1
                 })
             }).
             catch(res => {
@@ -113,15 +121,26 @@ Page({
             })  
     },
 
-    tapLike: function (e) {
+    addAffairLike: function (e) {
+        const like_guest = {
+            id: this.data.id, 
+            guest: {
+                nickname: this.data.userInfo.nickName, 
+                avatar: this.data.userInfo.avatarUrl,
+                gender: this.data.userInfo.gender
+            }
+        }
         affairModel.createAffairLike(e.currentTarget.dataset.affair_id)
             .then(res => {
                 wx.showToast({
                     title: '成功点赞',
                     icon: "none"
                 })
+                this.data.affair_likes.unshift(like_guest) 
                 this.setData({
-                    like_status: !this.data.like_status
+                    like_status: !this.data.like_status,
+                    affair_likes: this.data.affair_likes,
+                    affair_likes_count: this.data.affair_likes_count + 1
                 })
             }).
             catch(res => {
@@ -136,8 +155,42 @@ Page({
                     title: '取消点赞',
                     icon: "none"
                 })
+                for (let index = 0; index < this.data.affair_likes.length; index++) {
+                    if (this.data.affair_likes[index].guest.avatar == this.data.userInfo.avatarUrl) {
+                        this.data.affair_likes.splice(index, 1)
+                    }
+                }
                 this.setData({
-                    like_status: !this.data.like_status
+                    like_status: !this.data.like_status,
+                    affair_likes: this.data.affair_likes,
+                    affair_likes_count: this.data.affair_likes_count-1
+                })
+            }).
+            catch(res => {
+                console.log(res);
+            })
+    },
+
+    addAffairShare: function (e) {
+        //未验证未登录的情况
+        const share_guest = {
+            id: this.data.id,
+            guest: {
+                nickname: this.data.userInfo.nickName,
+                avatar: this.data.userInfo.avatarUrl,
+                gender: this.data.userInfo.gender
+            }
+        }
+        affairModel.createAffairShare(e.currentTarget.dataset.affair_id)
+            .then(res => {
+                wx.showToast({
+                    title: '成功分享',
+                    icon: "none"
+                })
+                this.data.affair_shares.unshift(share_guest)
+                this.setData({
+                    affair_shares: this.data.affair_shares,
+                    affair_shares_count: this.data.affair_shares_count + 1
                 })
             }).
             catch(res => {

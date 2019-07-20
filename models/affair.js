@@ -44,10 +44,20 @@ class AffairModel extends HTTP {
         })
     }
 
-    deleteAffairLike(affair_like_id) {
+    deleteAffairLike(affair_id) {
         return this.request({
             method: 'DELETE',
-            url: 'affair_like/' + affair_like_id 
+            url: 'affair_like/' + affair_id 
+        })
+    }
+
+    createAffairShare(affair_id) {
+        return this.request({
+            method: 'POST',
+            url: 'affair_share',
+            data: {
+                affair_id: affair_id,
+            }
         })
     }
 

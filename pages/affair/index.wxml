@@ -6,7 +6,7 @@
             <text>{{basic.name}}</text>
             <text>{{item.updated_at}}</text>
             <view bind:tap="tapContent" data-id="{{item.id}}">
-                <text>{{item.content}}</text>   
+                <text>{{item.content}}</text>
             </view>
             <!--放置图片-->
             <view>
@@ -16,12 +16,32 @@
             </view>
             <!--放置商品-->
             <view>
-              <view>{{item.product.name}}</view>
-              <view>{{item.product.current_price}}</view>
-              <image class="pic" src="{{item.product.pic}}"></image>
-              <view data-id="{{item.product.id}}" bind:tap="tapProduct">立即购买</view>
+                <view>{{item.product.name}}</view>
+                <view>{{item.product.current_price}}</view>
+                <image class="pic" src="{{item.product.pic}}"></image>
+                <view data-id="{{item.product.id}}" bind:tap="tapProduct">立即购买</view>
             </view>
-            <!--放置评论-->
+            <!--放置点赞、评论、分享数量，点赞功能暂时未设计(我来设计), 分享功能你来设计-->
+            <view>
+                <view wx:if="{{authorized}}">点赞{{item.affair_likes_count}}</view>
+                <button wx:if="{{!authorized}}" open-type="getUserInfo" bind:getuserinfo="onGetUserInfo" class="submit">
+                点赞(未登录)
+                </button> 
+            </view>
+            <view>
+                <view bind:tap="affairComment" data-affair_id="{{item.id}}" data-from="affairs">评论{{item.affair_comments_count}}</view>
+                <button wx:if="{{!authorized}}" open-type="getUserInfo" bind:getuserinfo="onGetUserInfo" class="submit">
+                评论(未登录)
+                </button>
+            </view>
+            <view>
+                <view>分享{{item.affair_shares_count}}</view>
+                <button wx:if="{{!authorized}}" open-type="getUserInfo" bind:getuserinfo="onGetUserInfo" class="submit">
+                分享(未登录)
+                </button>
+            </view>
+
+            <!--放置评论, 评论至多显示三条，如果多余三条就显示更多，查看跳转到affair_detail-->
             <view>
                 <block wx:for="{{item.affair_comments}}" wx:key="">
                     <view>
@@ -31,19 +51,6 @@
                 </block>
             </view>
         </view>
-        <!--放置点赞、评论、分享数量，点赞功能暂时未设计-->
-        <view>点赞</view>
-        <view>评论</view>
-        <view>分享</view>
-
-        <form bind:submit="formSubmit">
-            <input placeholder='评论' name='content'></input>
-            <input hidden="{{true}}" name='affair_id' value="{{item.id}}"></input>
-            <button form-type="submit" wx:if="{{authorized}}" class="submit">评论</button>
-            <button wx:if="{{!authorized}}" open-type="getUserInfo" bind:getuserinfo="onGetUserInfo" class="submit">
-                评论(未登录)
-            </button>
-        </form>
     </block>
 </view>
 

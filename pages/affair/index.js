@@ -57,6 +57,14 @@ Page({
         })
     },
 
+    affairComment: function (event) {
+        const affair_id = event.currentTarget.dataset.affair_id
+        const from = event.currentTarget.dataset.from
+        wx.redirectTo({
+            url: '/pages/affair-comment/index?id=' + affair_id + '&from=' + from
+        })
+    },
+
     tapContent: function(event){
         const id = event.currentTarget.dataset.id
         wx.navigateTo({
@@ -79,20 +87,7 @@ Page({
                 authorized: true,
             })
         }
-        guestModel.updateGuest(userInfo.nickName, userInfo.avatarUrl);
-    },
-
-    formSubmit: function (e) {
-        affairModel.createAffairComment(e.detail.value.affair_id, e.detail.value.content)
-            .then(res => {
-                wx.showToast({
-                    title: '评论成功',
-                    icon: "none"
-                })
-            }).
-            catch(res => {
-                console.log(res);
-            })
+        guestModel.updateGuest(userInfo.nickName, userInfo.avatarUrl, userInfo.gender);
     },
 
     userAuthorized() {
