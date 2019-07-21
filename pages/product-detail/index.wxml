@@ -70,10 +70,24 @@
 </button>
 
 <!--底部内容，依次是客服，收藏(修改主页为收藏)，购物车，加入购物车，立即购买-->
-<button open-type="contact">
-  <image open-type="contact" src="/images/icon/wechat.png" />
-</button>
-<view>收藏</view>
-<view>购物车</view>
+<view class="wechat">
+  <button open-type="contact">
+    <image open-type="contact" src="/images/icon/wechat.png" />
+  </button>
+</view>
+<view wx:if="{{keep_status}}" bind:tap="removeProductKeep">收藏</view>
+<view wx:if="{{!keep_status}}" bind:tap="addProductKeep">未收藏</view>
+
+<!--跳转到购物车-->
+<view bind:tap="onCartTap">购物车{{cartTotalCounts}}</view>
+
+<!--加入购物车-->
 <view>加入购物车</view>
+
+<form bind:submit="onAddingToCartTap">
+  <input placeholder='数量' name='productCounts'></input>
+  <button form-type="submit" class="submit">加入购物车</button>
+</form>
+
+
 <view>立即购买</view>

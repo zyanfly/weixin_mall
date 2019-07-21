@@ -1,0 +1,10 @@
+<block wx:for="{{products}}" wx:key="">
+  <view bind:tap="tapProduct" data-id="{{item.id}}">
+    <text>{{item.name}}</text>
+    <text>{{item.current_price}}</text>
+    <image class="pic" src="{{item.pic}}" />
+  </view>
+</block>
+<view wx:if="{{(products.length==0)}}">
+  <text>没有收藏商品</text>
+</view>

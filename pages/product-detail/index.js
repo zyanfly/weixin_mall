@@ -4,7 +4,11 @@ import {
 import {
   GuestModel
 } from '../../models/guest'
+import {
+  CartModel
+} from '../../models/cart.js';
 
+const cartModel = new CartModel();
 const guestModel = new GuestModel()
 const productModel = new ProductModel()
 
@@ -13,6 +17,7 @@ Page({
     id: null,
     product: null,
     authorized: false,
+    cartTotalCounts: 0,
     loadingCenter: true
   },
 
@@ -35,11 +40,17 @@ Page({
           product_likes: res.product_likes,
           loadingCenter: false
         })
-        return productModel.judgeProductStatus(this.data.id)
+        return productModel.judgeLikeStatus(this.data.id)
       })
       .then(res => {
         this.setData({
           like_status: res.data,
+        })
+        return productModel.judgeKeepStatus(this.data.id)
+      })
+      .then(res => {
+        this.setData({
+          keep_status: res.data,
           loadingCenter: false
         })
         callback && callback();
@@ -47,7 +58,6 @@ Page({
       .catch(res => {
         console.log(res);
       })
-
   },
 
   onGetUserInfo(event) {
@@ -160,7 +170,7 @@ Page({
   },
 
   deleteProductLike: function (event) {
-  productModel.deleteProductLike(this.data.id)
+    productModel.deleteProductLike(this.data.id)
       .then(res => {
         wx.showToast({
           title: '取消点赞',
@@ -180,6 +190,68 @@ Page({
       catch(res => {
         console.log(res);
       })
+  },
+
+  addProductKeep: function (event) {
+    productModel.createProductKeep(this.data.id)
+      .then(res => {
+        wx.showToast({
+          title: '成功收藏',
+          icon: "none"
+        })
+        this.setData({
+          keep_status: !this.data.keep_status,
+        })
+      }).
+      catch(res => {
+        console.log(res);
+      })
+  },
+
+  removeProductKeep: function (event) {
+    productModel.deleteProductKeep(this.data.id)
+      .then(res => {
+        wx.showToast({
+          title: '取消收藏',
+          icon: "none"
+        })
+        this.setData({
+          keep_status: !this.data.keep_status,
+        })
+      }).
+      catch(res => {
+        console.log(res);
+      })
+  },
+
+  /*跳转到购物车*/
+  onCartTap: function () {
+    wx.switchTab({
+      url: '/pages/cart/index'
+    });
+  },
+
+  /*添加到购物车*/
+  onAddingToCartTap: function (events) { 
+    this.setData({
+      productCounts: Number(events.detail.value.productCounts)
+    })
+    this.addToCart()
+    this.setData({
+      cartTotalCounts: cartModel.getCartTotalCounts().counts1
+    })
+  },
+
+  /*将商品数据添加到内存中*/
+  addToCart: function () {
+    var tempObj = {},
+      keys = ['id', 'name', 'current_price', 'pic'];
+    for (var key in this.data.product) {
+      if (keys.indexOf(key) >= 0) {
+        tempObj[key] = this.data.product[key];
+      }
+    }
+    cartModel.add(tempObj, this.data.productCounts);
   },
 
   onPullDownRefresh: function () {

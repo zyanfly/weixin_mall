@@ -67,9 +67,38 @@ class ProductModel extends HTTP {
     })
   }
 
-  judgeProductStatus(product_id) {
+  judgeLikeStatus(product_id) {
     return this.request({
       url: 'product_judge_like/' + product_id
+    })
+  }
+
+  createProductKeep(product_id) {
+    return this.request({
+      method: 'POST',
+      url: 'product_keep',
+      data: {
+        product_id: product_id,
+      }
+    })
+  }
+
+  deleteProductKeep(product_id) {
+    return this.request({
+      method: 'DELETE',
+      url: 'product_keep/' + product_id
+    })
+  }
+
+  judgeKeepStatus(product_id) {
+    return this.request({
+      url: 'product_judge_keep/' + product_id
+    })
+  }
+
+  getProductKeeps() {
+    return this.request({
+      url: 'guest_keep_products'
     })
   }
 }

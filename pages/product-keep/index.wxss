@@ -1,0 +1,3 @@
+.product_item{
+    flex-basis: 50%;
+}
