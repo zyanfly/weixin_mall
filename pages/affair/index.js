@@ -60,6 +60,13 @@ Page({
       url: '/pages/affair-comment/index?id=' + affair_id + '&from=' + from
     })
   },
+  // 进入详情
+  tapContent: function (e) {
+    const id = e.currentTarget.dataset.id
+    wx.navigateTo({
+      url: '/pages/affair-detail/index?id=' + id
+    })
+  },
 
   onPullDownRefresh: function () {
     this._loadData(() => {

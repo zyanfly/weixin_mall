@@ -12,7 +12,8 @@ Page({
   data: {
     affair_id: null,
     textLength: 0,
-    content: ''
+    content: '',
+    basic: null
   },
 
   onLoad: function (options) {

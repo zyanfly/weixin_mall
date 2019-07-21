@@ -4,5 +4,9 @@
     <text class="h_left">{{textLength}}/200</text>
     <button form-type="submit" class="submit {{content?'deep':''}}">发布</button>
   </view>
-  <textarea class="comment_content" placeholder='写评论...' name='content' value="{{content}}" bindinput="change"></textarea>
+  <textarea class="comment_content" placeholder='写评论...' name='content' maxlength="201" value="{{content}}" bindinput="change"></textarea>
+  <view class="footer">
+    <image src="{{basic.avatar}}" />
+    <text >{{basic.name}}</text>
+  </view>
 </form>
