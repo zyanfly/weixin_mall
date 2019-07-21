@@ -21,43 +21,48 @@
   <!-- 订单类型 -->
   <view class="order-type">
     <view bind:tap="onTapOrder" data-status='0'>
-      <icon class="iconfont icon-daifukuan" />
-      待付款
+      <icon class="iconfont icon-daifukuan" /> 待付款
     </view>
     <view bind:tap="onTapOrder" data-status='1'>
-      <icon class="iconfont icon-yifukuan" />
-      已付款
+      <icon class="iconfont icon-yifukuan" /> 已付款
     </view>
     <view bind:tap="onTapOrder" data-status='2'>
-      <icon class="iconfont icon-nogoods" />
-      已发货
+      <icon class="iconfont icon-nogoods" /> 已发货
     </view>
     <view bind:tap="onTapOrder" data-status='3'>
-      <icon class="iconfont icon-tubiaolunkuo" />
-      已收货
+      <icon class="iconfont icon-tubiaolunkuo" /> 已收货
     </view>
   </view>
 
   <!-- 功能列表 -->
   <view class="my-set">
+    <view class="set-item" ontap="onTapProductAfters">
+      <view>
+        <icon class="iconfont icon-dizhi" /> 退款/售后
+      </view>
+      <icon class="iconfont icon-right" />
+    </view>
+    <view class="set-item" ontap="onTapProductKeeps">
+      <view>
+        <icon class="iconfont icon-dizhi" /> 我的收藏
+      </view>
+      <icon class="iconfont icon-right" />
+    </view>
     <view class="set-item" ontap="editAddress">
       <view>
-        <icon class="iconfont icon-dizhi" />
-        地址管理
+        <icon class="iconfont icon-dizhi" /> 收获地址
       </view>
       <icon class="iconfont icon-right" />
     </view>
     <view class="set-item" ontap="onTapPay">
       <view>
-        <icon class="iconfont icon-maidan" />
-        到店买单
+        <icon class="iconfont icon-maidan" /> 到店买单
       </view>
       <icon class="iconfont icon-right" />
     </view>
     <view class="set-item" ontap="onTapSupport">
       <view>
-        <icon class="iconfont icon-mini-program" />
-        做一样的小程序
+        <icon class="iconfont icon-mini-program" /> 做一样的小程序
       </view>
       <icon class="iconfont icon-right" />
     </view>
