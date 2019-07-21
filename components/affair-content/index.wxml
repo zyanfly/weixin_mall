@@ -1,0 +1,30 @@
+<view>
+  <view class="header">
+    <image class="header_pic" src="{{basic.avatar}}"></image>
+    <view class="name_time">
+      <text class="name">{{basic.name}}</text>
+      <text class="time">{{product.updated_at}}</text>
+    </view>
+  </view>
+  <!-- 介绍 -->
+  <view bind:tap="tapContent" data-id="{{product.id}}" class="introduce">
+    <text>{{product.content}}</text>
+  </view>
+  <!-- 放置图片 -->
+  <view class="banner {{product.affair_images.length===1?'one':product.affair_images.length===2?'two':'nomal'}}">
+    <view wx:for="{{product.affair_images}}" wx:for-item="imgItem" wx:key="index" class="prodpic_wrap">
+      <image class="pic" src="{{imgItem.pic}}" mode="aspectFill" data-url="{{imgItem.pic}}" bind:tap="showImage" />
+    </view>
+  </view>
+  <!-- 放置商品 -->
+  <view wx:if="{{product.product}}" class="product" data-id="{{product.product.id}}" bind:tap="tapProduct">
+    <view class="p_left">
+      <image class="p_pic" src="{{product.product.pic}}"></image>
+      <view class="p_name_price">
+        <view class="p_name">{{product.product.name}}</view>
+        <view class="p_price">¥{{product.product.current_price}}</view>
+      </view>
+    </view>
+    <view class="buy">立即购买</view>
+  </view>
+</view>
