@@ -97,6 +97,13 @@
 					"pathName": "pages/cart/index",
 					"query": "",
 					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "comment",
+					"pathName": "pages/affair-comment/index",
+					"query": "from=affairs&id=6",
+					"scene": null
 				}
 			]
 		}
