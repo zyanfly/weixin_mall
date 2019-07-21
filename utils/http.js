@@ -39,8 +39,11 @@ class HTTP {
                 })
             }
         })
-
     }
+
+  getDataSet(event, key) {
+    return event.currentTarget.dataset[key];
+  }
 }
 
 export { HTTP }

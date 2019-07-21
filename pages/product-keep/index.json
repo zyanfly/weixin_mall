@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "收藏商品",
+  "usingComponents": {
+    "v-product": "/components/product/index",
+    "v-support": "/components/support/index",
+    "v-loading": "/components/loading/index"
+  }
+}

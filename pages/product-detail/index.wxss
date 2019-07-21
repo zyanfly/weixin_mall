@@ -27,7 +27,7 @@
    margin-bottom:20rpx;
 }
 
-image {
+.wechat image {
    width: 50rpx; 
    height: 50rpx;
    margin-bottom:20rpx;

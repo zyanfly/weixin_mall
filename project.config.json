@@ -13,7 +13,7 @@
 		"checkInvalidKey": true
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.7.5",
+	"libVersion": "2.7.7",
 	"appid": "wx6d75c38ee4586bf2",
 	"projectname": "mall",
 	"debugOptions": {
@@ -40,7 +40,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 6,
+			"current": 7,
 			"list": [
 				{
 					"id": -1,
@@ -86,9 +86,16 @@
 				},
 				{
 					"id": -1,
-					"name": "pages/affair-detail/index",
-					"pathName": "pages/affair-detail/index",
-					"query": "id=6",
+					"name": "product-keep",
+					"pathName": "pages/product-keep/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "cart",
+					"pathName": "pages/cart/index",
+					"query": "",
 					"scene": null
 				}
 			]

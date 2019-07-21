@@ -1,1 +1,104 @@
-/* pages/my/index.wxss */
+@import "/overall/base.wxss";
+
+page{
+    background-color:#f1f1f1;
+}
+
+/* 个人头像部分 */
+.my-header{
+    background-color: #AB956D;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    /* padding: 30rpx 30rpx 60rpx 30rpx; */
+    /* padding-left:50rpx;
+    padding-bottom:60rpx; */
+    padding:50rpx 60rpx;
+    font-size: 28rpx;
+}
+.my-header image{
+    height: 100rpx;
+    width: 100rpx;
+    border-radius: 100rpx;
+}
+.my-header text{
+    margin-left: 20rpx;
+}
+
+/* 我的订单 */
+.my-order{
+    display:flex;
+    justify-content: space-between;
+    align-items:center;
+    padding:0rpx 20rpx;
+    background-color: #fff;
+}
+.my-order-text{
+    font-size:14px;
+    color:#000;
+}
+.my-order-right{
+    display:flex;
+    align-items:center;
+}
+.my-order-right, .my-order-right icon{
+    font-size:12px;
+    color:#666;
+}
+.my-order-right .icon-right{
+    margin-left:10rpx;
+    color:#aaa;
+}
+
+/* 订单类型 */
+.order-type{
+    display: flex;
+    justify-content: space-between;
+    padding:20rpx 60rpx;
+    background:#fff;
+    border-bottom:1px solid #EDEDED;
+}
+.order-type > view{
+    display:flex;
+    flex-direction:column;
+    justify-content: center;
+    align-items:center;
+    font-size:12px;
+    color:#666;
+}
+.order-type icon{
+    font-size:24px;
+    color:#FFB25E;
+    font-weight: bold;
+}
+
+/* 功能列表 */
+.my-set{
+    background-color: #fff;
+}
+.my-set icon{
+    color:#aaa;
+    margin-right:20rpx;
+    font-size:18px;
+}
+.my-set .iconfont.icon-dizhi{
+    color:#FF586F;
+}
+.my-set .iconfont.icon-maidan{
+    color:#68A2FF;
+}
+.my-set .iconfont.icon-mini-program{
+    color:#D1AD83;
+}
+.set-item{
+    display:flex;
+    justify-content: space-between;
+    align-items:center;
+    margin:0 20rpx;
+    padding:10rpx 10rpx 10rpx 0;
+    border-bottom:1px solid #EDEDED;
+}
+.set-item > view{
+    display:flex;
+    align-items:center;
+}
