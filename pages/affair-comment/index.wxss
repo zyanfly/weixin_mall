@@ -1,1 +1,42 @@
-/* pages/affair-comment/index.wxss */
+page{
+  background-color:#f1f1f1;
+}
+.header{
+  display:flex;
+  align-items:center;
+  justify-content: space-between;
+  padding:0 20rpx;
+  width:100%;
+  height:80rpx;
+  background-color:transparent;
+  box-sizing: border-box;
+  font-size:12px;
+}
+.header .h_left{
+  color:#aaa;
+}
+.header button{
+  background-color:rgb(233, 204, 161);
+  margin:0;
+  padding:6rpx 40rpx;
+  font-size:14px;
+  color:#fff;
+  line-height:40rpx;
+  border-radius:50px;
+}
+.header button.deep{
+  background-color:#FF9900;
+}
+.header button:after{
+  border:none;
+  border-radius:0;
+}
+
+/* 评论内容 */
+.comment_content{
+  background-color:#fff;
+  width:100%;
+  padding:20rpx;
+  font-size:14px;
+  box-sizing: border-box;
+}

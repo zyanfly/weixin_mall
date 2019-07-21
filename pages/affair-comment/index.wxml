@@ -1,5 +1,8 @@
-<form bind:submit="formSubmit">
-    <input placeholder='评论' name='content'></input>
-    <input hidden="{{true}}" name='affair_id' value="{{affair_id}}"></input>
-    <button form-type="submit" class="submit">评论</button>
+<form bind:submit="commentSubmit">
+  <view class="header">
+    <!-- <input hidden="{{true}}" name='affair_id' value="{{affair_id}}"></input> -->
+    <text class="h_left">{{textLength}}/200</text>
+    <button form-type="submit" class="submit {{content?'deep':''}}">发布</button>
+  </view>
+  <textarea class="comment_content" placeholder='写评论...' name='content' value="{{content}}" bindinput="change"></textarea>
 </form>
