@@ -26,3 +26,9 @@
    height: 50rpx;
    margin-bottom:20rpx;
 }
+
+image {
+   width: 50rpx; 
+   height: 50rpx;
+   margin-bottom:20rpx;
+}
