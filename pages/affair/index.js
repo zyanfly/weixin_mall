@@ -52,12 +52,7 @@ Page({
             })
     },
 
-    tapProduct: function(event){
-        const id = event.currentTarget.dataset.id
-        wx.navigateTo({
-            url: '/pages/product-detail/index?bid=' + id
-        })
-    },
+
 
     affairComment: function (event) {
         const affair_id = event.currentTarget.dataset.affair_id
@@ -67,12 +62,7 @@ Page({
         })
     },
 
-    tapContent: function(event){
-        const id = event.currentTarget.dataset.id
-        wx.navigateTo({
-            url: '/pages/affair-detail/index?id=' + id
-        })
-    },
+
 
     onPullDownRefresh: function () {
         this._loadData(() => {
@@ -108,23 +98,7 @@ Page({
             }
         })
     },
-    // 展示图片
-    showImage(e){
-        let id = e.target.dataset.id;
-        let urls = [];
-        let list = this.data.affairs;
-        for(let i=0;i<list.length;i++){
-            if(list[i].id===id){
-                for(let j=0;j<list[i].affair_images.length;j++)
-                urls.push(list[i].affair_images[j].pic)
-            }
-        }
 
-        wx.previewImage({
-            current: e.target.dataset.url,
-            urls:urls
-        })
-    },
 
     // 分享
     onShareAppMessage(e){

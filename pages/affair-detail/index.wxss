@@ -1,9 +1,45 @@
 .pic {
-   width: 50rpx; 
-   height: 50rpx;
-   margin-bottom:20rpx;
+  width: 50rpx;
+  height: 50rpx;
+  margin-bottom: 20rpx;
 }
 
 .affair_container {
-    border-bottom:1rpx solid #ddd;
+  border-bottom: 1rpx solid #ddd;
+  padding: 30rpx;
+}
+
+/* 评论 */
+/* 评论tab */
+.c_tab{
+  display:flex;
+  justify-content: space-between;
+  padding:0 20rpx;
+  font-size: 14px;
+  border-bottom:1px solid #D0D0D7;
+  color:#ccc;
+}
+.c_tab_left{
+  display:flex;
+}
+.c_tab_left view, .share{
+  position: relative;
+  padding:20rpx;
+}
+.comment{
+  margin-right:30rpx;
+}
+.active{
+  color:#333;
+}
+.active:after{
+  content:'';
+  display:block;
+  width:50%;
+  height:0;
+  border-bottom:2px solid #FF9900;
+  position: absolute;
+  bottom:0;
+  left:50%;
+  transform:translateX(-50%);
 }

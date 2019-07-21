@@ -16,6 +16,7 @@ Page({
     data: {
         id: null,
         loadingCenter: true,
+        currentTab: 0,
     },
 
     onLoad: function (options) {
@@ -68,7 +69,7 @@ Page({
                 userInfo: userInfo
             })
         }
-        guestModel.updateGuest(userInfo.nickName, 
+        guestModel.updateGuest(userInfo.nickName,
             userInfo.avatarUrl, userInfo.gender);
     },
 
@@ -118,14 +119,14 @@ Page({
             }).
             catch(res => {
                 console.log(res);
-            })  
+            })
     },
 
     addAffairLike: function (e) {
         const like_guest = {
-            id: this.data.id, 
+            id: this.data.id,
             guest: {
-                nickname: this.data.userInfo.nickName, 
+                nickname: this.data.userInfo.nickName,
                 avatar: this.data.userInfo.avatarUrl,
                 gender: this.data.userInfo.gender
             }
@@ -136,7 +137,7 @@ Page({
                     title: '成功点赞',
                     icon: "none"
                 })
-                this.data.affair_likes.unshift(like_guest) 
+                this.data.affair_likes.unshift(like_guest)
                 this.setData({
                     like_status: !this.data.like_status,
                     affair_likes: this.data.affair_likes,
@@ -205,5 +206,14 @@ Page({
     },
 
     onShareAppMessage: function () {
+    },
+
+    // 切换tab
+    switch(e){
+      let current = e.currentTarget.dataset.index;
+      console.log(current)
+      this.setData({
+        currentTab: current
+      })
     }
 })

@@ -40,7 +40,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": -1,
+			"current": 6,
 			"list": [
 				{
 					"id": -1,
@@ -82,6 +82,13 @@
 					"name": "support",
 					"pathName": "pages/support/index",
 					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/affair-detail/index",
+					"pathName": "pages/affair-detail/index",
+					"query": "id=6",
 					"scene": null
 				}
 			]
