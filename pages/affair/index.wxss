@@ -145,6 +145,17 @@
 .like {
   margin-right: 20rpx;
 }
+.share{
+  background:transparent;
+  display:flex;
+  align-items:center;
+  font-size:inherit;
+  padding:10rpx;
+  line-height:inherit;
+}
+.share:after{
+  border:none;
+}
 
 /* 评论列表 */
 
@@ -176,4 +187,63 @@
 
 .remark:after {
   border-radius: 0;
+}
+
+/* 分享modal */
+.m_container{
+  z-index: 9000;
+  position:fixed;
+  top:0;
+  bottom:0;
+  right:0;
+  left:0;
+  background-color:rgba(0,0,0,.5);
+}
+
+.modal_wrapper{
+  position: absolute;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  bottom:30rpx;
+  height: 340rpx;
+  width:94%;
+  left:50%;
+  transform: translateX(-50%);
+  background-color:#fff;
+  border-radius:10px;
+}
+.close{
+  position: absolute;
+  top:0;
+  right:10rpx;
+  padding:10rpx;
+}
+.close image{
+  width:20rpx;
+  height:20rpx;
+}
+.left{
+  margin-right:150rpx;
+}
+.left image, .right image{
+  width:80rpx;
+  height:80rpx;
+}
+.left, .right{
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size:12px;
+  color:#666;
+}
+.right{
+  padding:0;
+  margin:0;
+  background-color:transparent;
+  line-height:inherit;
+}
+.right:after{
+  border:none;
 }

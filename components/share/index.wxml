@@ -1,4 +1,0 @@
-<button bind:tap="onLike" class="container" open-type="share">
-    <image src="/images/icon/share.png" />
-    {{count}}
-</button>

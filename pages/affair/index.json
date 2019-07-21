@@ -4,7 +4,6 @@
         "v-affair": "/components//affair-content/index",
         "v-loading": "/components/loading/index",
         "v-support": "/components/support/index",
-        "v-like": "/components/like/index",
-        "v-share": "/components/share/index"
+        "v-like": "/components/like/index"
     }
 }

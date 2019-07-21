@@ -15,7 +15,25 @@ function getHeight(selector) {
     })
   })
 }
+/**
+ * 获取当前时间并格式化为yyyy-MM-dd hh:mm
+ */
+function getTime(){
+  let time = new Date();
+  let y,d,M,h,m;
+  y = time.getFullYear();
+  d = time.getDay();
+  M = time.getMonth()+1;
+  h = time.getHours();
+  m = time.getMinutes();
+  d = d<10?'0'+d:d;
+  M = M<10?'0'+M:M;
+  h = h<10?'0'+h:h;
+  m = m<10?'0'+m:m;
+  return y+'-'+M+'-'+d+' '+h+':'+m;
+}
 
 module.exports = {
-  getHeight:getHeight
+  getHeight:getHeight,
+  getTime:getTime
 }
