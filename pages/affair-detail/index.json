@@ -1,6 +1,7 @@
 {
     "navigationBarTitleText": "动态",
     "usingComponents": {
-      "v-affair": "/components//affair-content/index"
+      "v-affair": "/components/affair-content/index",
+      "v-support": "/components/support/index"
     }
 }

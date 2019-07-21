@@ -1,43 +1,19 @@
 <view>
   <block wx:for="{{affairs}}" wx:key="">
     <view class="affair_container">
-      <v-affair basic="{{basic}}" product="{{item}}" isDetail="{{false}}" />
       <!-- 放置基本信息 -->
-      <!-- <view class="header">
-        <image class="header_pic" src="{{basic.avatar}}"></image>
-        <view class="name_time">
-          <text class="name">{{basic.name}}</text>
-          <text class="time">{{item.updated_at}}</text>
-        </view>
-      </view> -->
-      <!-- 介绍 -->
-      <!-- <view bind:tap="tapContent" data-id="{{item.id}}" class="introduce">
-        <text>{{item.content}}</text>
-      </view> -->
-      <!-- 放置图片 -->
-      <!-- <view class="banner {{item.affair_images.length===1?'one':item.affair_images.length===2?'two':'nomal'}}">
-        <view wx:for="{{item.affair_images}}" wx:for-item="imgItem" wx:key="index" class="prodpic_wrap">
-          <image class="pic" src="{{imgItem.pic}}" mode="aspectFill" data-url="{{imgItem.pic}}" data-id="{{item.id}}" bind:tap="showImage" />
-        </view>
-      </view> -->
-      <!-- 放置商品 -->
-      <!-- <view wx:if="{{item.product}}" class="product" data-id="{{item.product.id}}" bind:tap="tapProduct">
-        <view class="p_left">
-          <image class="p_pic" src="{{item.product.pic}}"></image>
-          <view class="p_name_price">
-            <view class="p_name">{{item.product.name}}</view>
-            <view class="p_price">¥{{item.product.current_price}}</view>
-          </view>
-        </view>
-        <view class="buy">立即购买</view>
-      </view> -->
+      <v-affair basic="{{basic}}" product="{{item}}" isDetail="{{false}}" />
       <!-- 放置点赞、评论、分享数量，点赞功能暂时未设计(我来设计), 分享功能你来设计 -->
       <view class="comments">
         <view class="c_title">
-          <view class="c_title_left">浏览100次</view>
+          <view class="c_title_left">浏览{{item.view}}次</view>
           <view class="c_title_right">
             <v-like like="{{false}}" count="{{item.affair_likes_count}}" readOnly="{{true}}" class="like" />
-            <v-share count="{{item.affair_shares_count}}" />
+            <!-- <v-share count="{{item.affair_shares_count}}" comment_id="{{item.id}}" /> -->
+            <button data-id="{{item.id}}" class="share" bind:tap="showModal">
+              <image src="/images/icon/share.png" />
+              {{item.affair_shares_count}}
+            </button>
           </view>
         </view>
         <!-- 放置评论, 评论至多显示三条，如果多余三条就显示更多，查看跳转到affair_detail -->
@@ -63,6 +39,22 @@
       </view>
     </view>
   </block>
+</view>
+<!-- 分享modal -->
+<view class="m_container" wx:if="{{showModal}}" bind:tap="hidenModal">
+  <view class="modal_wrapper" catch:tap="test">
+    <view class="close" bind:tap="hidenModal">
+      <image src="/images/icon/close.png"></image>
+    </view>
+    <view class="left" catch:tap="createPoster">
+      <image src="/images/icon/friends.png" />
+      <text>生成海报</text>
+    </view>
+    <button class="right" open-type="share">
+      <image src="/images/icon/wechat_r.png" />
+      <text>发给好友</text>
+    </button>
+  </view>
 </view>
 <v-support />
 <v-loading class="loading-center" wx:if="{{false}}" />

@@ -7,25 +7,75 @@
       <view class="c_tab">
         <view class="c_tab_left">
           <view class="comment {{currentTab==0?'active':''}}" data-index="0" bind:tap="switch">
-            评论<text>{{affair.affair_comments_count}}</text>
+            评论
+            <text>{{affair_comments_count}}</text>
           </view>
           <view class="like {{currentTab==1?'active':''}}" data-index="1" bind:tap="switch">
-            点赞<text>{{affair.affair_likes_count}}</text>
+            点赞
+            <text>{{affair_likes_count}}</text>
           </view>
         </view>
         <view class="share {{currentTab==2?'active':''}}" data-index="2" bind:tap="switch">
-          转发<text>{{affair.affair_shares_count}}</text>
+          转发
+          <text>{{affair_shares_count}}</text>
         </view>
       </view>
-      <view class="c_items">
+      <view class="a_items">
+        <!-- 评论 -->
         <view hidden="{{currentTab!=0}}">
-
+          <view class="a_item" wx:for="{{affair_comments}}" wx:key="index">
+            <view class="a_item_left">
+              <image class="avatar" src="{{item.guest.avatar}}" />
+              <view class="a_item_detail">
+                <view class="name">
+                  <text>{{item.guest.nickname}}</text>
+                  <image class="gender" src="{{item.guest.gender==1?'/images/icon/man.png':'/images/icon/women.png'}}" />
+                </view>
+                <view class="a_content">{{item.content}}</view>
+                <view class="a_time">
+                  {{item.created_at}}
+                  <text bind:tap="deleteAffairComment" data-affair_comment_id="{{item.id}}" wx:if="{{userInfo.avatarUrl===item.guest.avatar}}" class="delete">删除</text>
+                </view>
+              </view>
+            </view>
+            <view class="a_like">
+              <image class="like_image" src="/images/icon/like.png" />
+            </view>
+          </view>
         </view>
+        <!-- 点赞 -->
         <view hidden="{{currentTab!=1}}">
-
+          <view class="a_item" wx:for="{{affair_likes}}" wx:key="index">
+            <view class="a_item_left">
+              <image class="avatar" src="{{item.guest.avatar}}" />
+              <view class="a_item_detail">
+                <view class="name">
+                  <text>{{item.guest.nickname}}</text>
+                  <image class="gender" src="{{item.guest.gender==1?'/images/icon/man.png':'/images/icon/women.png'}}" />
+                </view>
+                <view class="a_content" wx:if="{{item.content}}">{{item.content}}</view>
+                <view class="a_time">{{item.created_at}}</view>
+              </view>
+            </view>
+          </view>
         </view>
+        <!-- 分享 -->
         <view hidden="{{currentTab!=2}}">
-
+          <view class="a_item" wx:for="{{affair_shares}}" wx:key="index">
+            <view class="a_item_left">
+              <image class="avatar" src="{{item.guest.avatar}}" />
+              <view class="a_item_detail">
+                <view class="name">
+                  <text>{{item.guest.nickname}}</text>
+                  <image class="gender" src="{{item.guest.gender==1?'/images/icon/man.png':'/images/icon/women.png'}}" />
+                </view>
+                <view class="a_content" wx:if="{{item.content}}">{{item.content}}</view>
+                <view class="a_time">
+                  {{item.created_at}}
+                </view>
+              </view>
+            </view>
+          </view>
         </view>
       </view>
     </view>
@@ -59,24 +109,46 @@
     </block> -->
   </view>
 </view>
-<button bind:tap="affairComment" data-affair_id="{{affair.id}}" data-from="affair_detail" wx:if="{{authorized}}" class="submit">
-  评论
-</button>
-<button wx:if="{{!authorized}}" open-type="getUserInfo" bind:getuserinfo="onGetUserInfo" class="submit">
-  评论(未登录)
-</button>
-<view wx:if="{{authorized}}">
-  <button form-type="submit" wx:if="{{!like_status}}" data-affair_id="{{affair.id}}" bind:tap="addAffairLike">
-    点赞
+<view class="footbar">
+
+  <button bind:tap="affairComment" data-affair_id="{{affair.id}}" data-from="affair_detail" wx:if="{{authorized}}" class="submit">
+    <image src="/images/icon/comment.png" />
+    评论
   </button>
-  <button form-type="submit" wx:if="{{like_status}}" data-affair_id="{{affair.id}}" bind:tap="deleteAffairLike">
-    取消点赞
+  <button wx:if="{{!authorized}}" open-type="getUserInfo" bind:getuserinfo="onGetUserInfo" class="submit">
+    <image src="/images/icon/comment.png" />
+    评论
+  </button>
+
+  <button wx:if="{{authorized}}" data-affair_id="{{affair.id}}" bind:tap="like">
+    <image src="{{like_status?'/images/icon/liked.png':'/images/icon/like.png'}}" />
+    赞
+  </button>
+  <button wx:if="{{!authorized}}" open-type="getUserInfo" bind:getuserinfo="onGetUserInfo" class="submit">
+    <image src="/images/icon/like.png" />
+    赞
+  </button>
+
+  <button data-affair_id="{{affair.id}}" bind:tap="addAffairShare">
+    <image src="/images/icon/share.png" />
+    分享
   </button>
 </view>
-<button wx:if="{{!authorized}}" open-type="getUserInfo" bind:getuserinfo="onGetUserInfo" class="submit">
-  点赞(未登录)
-</button>
-<!-- 未验证未登录的情况 -->
-<button form-type="submit" data-affair_id="{{affair.id}}" bind:tap="addAffairShare">分享</button>
 <v-support />
+<!-- 分享modal -->
+<view class="m_container" wx:if="{{showModal}}" bind:tap="hidenModal">
+  <view class="modal_wrapper" catch:tap="test">
+    <view class="close" bind:tap="hidenModal">
+      <image src="/images/icon/close.png"></image>
+    </view>
+    <view class="left" catch:tap="createPoster">
+      <image src="/images/icon/friends.png" />
+      <text>生成海报</text>
+    </view>
+    <button class="right" open-type="share" bind:share="shareBack">
+      <image src="/images/icon/wechat_r.png" />
+      <text>发给好友</text>
+    </button>
+  </view>
+</view>
 <v-loading class="loading-center" wx:if="{{false}}" />
