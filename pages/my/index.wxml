@@ -2,11 +2,18 @@
 
   <!-- 顶部banner -->
   <view class="my-header">
-    <button wx:if="{{!authorized}}" open-type="getUserInfo" bind:getuserinfo="onGetUserInfo" class="submit">
-      评论(未登录)
+    <button wx:if="{{!authorized}}" open-type="getUserInfo" bind:getuserinfo="onGetUserInfo" class="unlogin">
+      <view class="imgwrap">
+        <icon class="iconfont icon-morentouxiang" />
+      </view>
+      <view class="imgbottom">
+        未登录
+      </view>
     </button>
-    <image src="{{userInfo.avatarUrl}}"></image>
-    <text class="name">{{userInfo.nickName}}</text>
+    <view wx:if="{{userInfo}}" class="avator">
+      <image src="{{userInfo.avatarUrl}}"></image>
+      <text class="name">{{userInfo.nickName}}</text>
+    </view>
   </view>
 
   <!-- 我的订单 -->
@@ -21,16 +28,20 @@
   <!-- 订单类型 -->
   <view class="order-type">
     <view bind:tap="onTapOrder" data-status='0'>
-      <icon class="iconfont icon-daifukuan" /> 待付款
+      <icon class="iconfont icon-daifukuan" />
+      待付款
     </view>
     <view bind:tap="onTapOrder" data-status='1'>
-      <icon class="iconfont icon-yifukuan" /> 已付款
+      <icon class="iconfont icon-yifukuan" />
+      已付款
     </view>
     <view bind:tap="onTapOrder" data-status='2'>
-      <icon class="iconfont icon-nogoods" /> 已发货
+      <icon class="iconfont icon-nogoods" />
+      已发货
     </view>
     <view bind:tap="onTapOrder" data-status='3'>
-      <icon class="iconfont icon-tubiaolunkuo" /> 已收货
+      <icon class="iconfont icon-tubiaolunkuo" />
+      已收货
     </view>
   </view>
 

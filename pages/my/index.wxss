@@ -8,8 +8,8 @@ page{
 .my-header{
     background-color: #AB956D;
     color: #fff;
-    display: flex;
-    align-items: center;
+    /* display: flex; */
+    /* align-items: center; */
     /* padding: 30rpx 30rpx 60rpx 30rpx; */
     /* padding-left:50rpx;
     padding-bottom:60rpx; */
@@ -23,6 +23,40 @@ page{
 }
 .my-header text{
     margin-left: 20rpx;
+}
+.unlogin{
+    display:inline-flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color:transparent;
+    padding:0;
+}
+.unlogin:after{
+    border:none;
+}
+.unlogin .imgwrap{
+    background-color:#fff;
+    border-radius:50%;
+    height:100rpx;
+    width:100rpx;
+    display:flex;
+    justify-content: center;
+    align-items:center;
+    overflow: hidden;
+}
+.unlogin .iconfont{
+    font-size:116rpx;
+    color:#aaa;
+}
+.unlogin .imgbottom{
+    font-size:12px;
+    color:#666;
+    line-height:40rpx;
+}
+.avator{
+    display:flex;
+    flex-direction: column;
 }
 
 /* 我的订单 */
@@ -79,7 +113,7 @@ page{
 .my-set icon{
     color:#aaa;
     margin-right:20rpx;
-    font-size:18px;
+    font-size:16px;
 }
 .my-set .iconfont.icon-dizhi{
     color:#FF586F;
@@ -97,6 +131,7 @@ page{
     margin:0 20rpx;
     padding:10rpx 10rpx 10rpx 0;
     border-bottom:1px solid #EDEDED;
+    font-size:12px;
 }
 .set-item > view{
     display:flex;
