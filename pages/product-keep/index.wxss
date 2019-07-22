@@ -8,3 +8,12 @@
   padding:10rpx;
   box-sizing: border-box;
 }
+
+.no-data{
+    display: flex;
+    height: 140rpx;
+    font-size: 26rpx;
+    color: #ccc;
+    align-items: center;
+    justify-content: center;
+}
