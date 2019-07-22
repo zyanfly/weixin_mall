@@ -53,7 +53,7 @@ Page({
       .then(res => {
         if (this.data.from == "affairs") {
           wx.switchTab({
-            url: '/pages/affair/index'
+            url: '/pages/affair/index'         
           })
         } else {
           wx.redirectTo({

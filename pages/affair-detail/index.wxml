@@ -134,7 +134,7 @@
     分享
   </button>
 </view>
-<v-support />
+<!-- <v-support /> -->
 <!-- 分享modal -->
 <view class="m_container" wx:if="{{showModal}}" bind:tap="hidenModal">
   <view class="modal_wrapper" catch:tap="test">

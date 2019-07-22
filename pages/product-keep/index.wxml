@@ -10,6 +10,6 @@
     <v-product class="product_item" wx:key="index" product="{{item}}" />
   </view>
 </view>
-<view wx:if="{{(products.length==0)}}">
-  <text>没有收藏商品</text>
+<view wx:if="{{(products.length==0)}}" class="no-data">
+  <text>您还没有收藏任何商品</text>
 </view>

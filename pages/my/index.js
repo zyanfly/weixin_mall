@@ -91,6 +91,18 @@ Page({
     })
   },
 
+  onTapProductKeeps: function(e) {
+    wx.navigateTo({
+      url: '/pages/product-keep/index'
+    })
+  },
+
+  onTapProductAfters: function(e) {
+    wx.navigateTo({
+      url: '/pages/product-after/index'
+    })
+  },
+
   onTapOrder: function (e) {
     const status = e.currentTarget.dataset.status
     wx.navigateTo({

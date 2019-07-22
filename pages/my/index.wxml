@@ -2,11 +2,18 @@
 
   <!-- 顶部banner -->
   <view class="my-header">
-    <button wx:if="{{!authorized}}" open-type="getUserInfo" bind:getuserinfo="onGetUserInfo" class="submit">
-      评论(未登录)
+    <button wx:if="{{!authorized}}" open-type="getUserInfo" bind:getuserinfo="onGetUserInfo" class="unlogin">
+      <view class="imgwrap">
+        <icon class="iconfont icon-morentouxiang" />
+      </view>
+      <view class="imgbottom">
+        未登录
+      </view>
     </button>
-    <image src="{{userInfo.avatarUrl}}"></image>
-    <text class="name">{{userInfo.nickName}}</text>
+    <view wx:if="{{userInfo}}" class="avator">
+      <image src="{{userInfo.avatarUrl}}"></image>
+      <text class="name">{{userInfo.nickName}}</text>
+    </view>
   </view>
 
   <!-- 我的订单 -->
@@ -40,24 +47,33 @@
 
   <!-- 功能列表 -->
   <view class="my-set">
+    <view class="set-item" ontap="onTapProductAfters">
+      <view>
+        <icon class="iconfont icon-dizhi" /> 退款/售后
+      </view>
+      <icon class="iconfont icon-right" />
+    </view>
+    <view class="set-item" ontap="onTapProductKeeps">
+      <view>
+        <icon class="iconfont icon-dizhi" /> 我的收藏
+      </view>
+      <icon class="iconfont icon-right" />
+    </view>
     <view class="set-item" ontap="editAddress">
       <view>
-        <icon class="iconfont icon-dizhi" />
-        地址管理
+        <icon class="iconfont icon-dizhi" /> 收获地址
       </view>
       <icon class="iconfont icon-right" />
     </view>
     <view class="set-item" ontap="onTapPay">
       <view>
-        <icon class="iconfont icon-maidan" />
-        到店买单
+        <icon class="iconfont icon-maidan" /> 到店买单
       </view>
       <icon class="iconfont icon-right" />
     </view>
     <view class="set-item" ontap="onTapSupport">
       <view>
-        <icon class="iconfont icon-mini-program" />
-        做一样的小程序
+        <icon class="iconfont icon-mini-program" /> 做一样的小程序
       </view>
       <icon class="iconfont icon-right" />
     </view>
