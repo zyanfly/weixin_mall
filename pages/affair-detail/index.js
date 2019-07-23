@@ -33,13 +33,37 @@ Page({
     affairModel.getAffair(this.data.id)
       .then(res => {
         this.setData({
-          affair: res,
+          affair: res,      
+          //分离出来容易进行数据更新
           affair_comments: res.affair_comments,
           affair_likes: res.affair_likes,
           affair_shares: res.affair_shares,
           affair_comments_count: res.affair_comments_count,
           affair_likes_count: res.affair_likes_count,
           affair_shares_count: res.affair_shares_count,
+        })
+        //合并分享的同类项,功能实现，待优化
+        var avatars = []
+        for (let index = 0; index < this.data.affair_shares.length; index++){
+          avatars.unshift(this.data.affair_shares[index].guest.avatar)
+        }
+        var unique_avatars = []
+        for (let index = 0; index < avatars.length; index++){
+          if (unique_avatars.indexOf(avatars[index]) == -1){
+            unique_avatars.push(avatars[index])
+          }
+        }
+        var unique_affair_shares = []
+        for (let i = 0; i < unique_avatars.length; i++){
+          for (let index = 0; index < this.data.affair_shares.length; index++){
+            if (unique_avatars[i] == this.data.affair_shares[index].guest.avatar){
+              unique_affair_shares.push(this.data.affair_shares[index])
+              break;
+            }
+          }
+        }
+        this.setData({
+          affair_shares: unique_affair_shares
         })
         return basicModel.getBasic()
       })
@@ -50,9 +74,14 @@ Page({
         return affairModel.judgeLikeStatus(this.data.id)
       })
       .then(res => {
-        console.log(res)
         this.setData({
           like_status: res.data,
+        })
+        return affairModel.getAccessToken()
+      })
+      .then(res => {
+        this.setData({
+          access_token: res.access_token,
           loadingCenter: false
         })
         callback && callback();
@@ -60,6 +89,30 @@ Page({
       .catch(res => {
         console.log(res);
       })
+  },
+
+  onTapQrcode: function () {
+    var that = this
+    wx.request({
+      url: 'https://api.weixin.qq.com/wxa/getwxacodeunlimit?access_token=' + this.data.access_token,
+      method: "POST",
+      //查看api，发现设置width宽度无效
+      data: {
+        'path': "/pages/affairs/index",
+        'scene': "id=" + this.data.id,
+        'width': 280,
+      },
+      responseType: 'arraybuffer', // arraybuffer是以数组的语法处理二进制数据，称为二进制数组。
+      success: function (res) {
+        let data = wx.arrayBufferToBase64(res.data)
+        that.setData({
+          qrcode: 'data:image/png;base64,' + data
+        })
+      },
+      fail: function (res) {
+        console.log('fail')
+      }
+    })
   },
 
   onGetUserInfo(event) {
@@ -70,11 +123,6 @@ Page({
         userInfo: userInfo
       })
     }
-    // affairModel.judgeLikeStatus(this.data.id).then(res=>{
-    //   this.setData({
-    //     like_status:res.data
-    //   })
-    // })
     guestModel.updateGuest(userInfo.nickName,
       userInfo.avatarUrl, userInfo.gender);
   },
@@ -215,6 +263,11 @@ Page({
           title: '成功分享',
           icon: "none"
         })
+        for (let index = 0; index < that.data.affair_shares.length; index++) {
+          if (that.data.affair_shares[index].guest.avatar == share_guest.guest.avatar) {
+            that.data.affair_shares.splice(index, 1)
+          }
+        }
         that.data.affair_shares.unshift(share_guest)
         that.setData({
           affair_shares: that.data.affair_shares,

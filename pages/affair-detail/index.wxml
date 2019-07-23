@@ -79,34 +79,6 @@
         </view>
       </view>
     </view>
-    <!-- <view>评论列表{{affair_comments_count}}</view> -->
-    <!-- <block wx:for="{{affair_comments}}" wx:key="">
-      <view>
-        <text>{{item.guest.nickname}}</text>
-        <text>{{item.guest.gender}}</text>
-        <text>{{item.created_at}}</text>
-        <image class="pic" src="{{item.guest.avatar}}" />
-        <text>{{item.content}}</text>
-        <text bind:tap="deleteAffairComment" data-affair_comment_id="{{item.id}}" wx:if="{{authorized}}">
-          删除
-        </text>
-      </view>
-    </block> -->
-    <!-- 点赞列表 -->
-    <!-- <view>点赞列表{{affair_likes_count}}</view>
-    <block wx:for="{{affair_likes}}" wx:key="">
-      <text>{{item.guest.nickname}}</text>
-      <text>{{item.guest.gender}}</text>
-      <text>{{item.created_at}}</text>
-      <image class="pic" src="{{item.guest.avatar}}" />
-    </block>
-    <view>转发列表{{affair_shares_count}}</view>
-    <block wx:for="{{affair_shares}}" wx:key="">
-      <text>{{item.guest.nickname}}</text>
-      <text>{{item.guest.gender}}</text>
-      <text>{{item.created_at}}</text>
-      <image class="pic" src="{{item.guest.avatar}}" />
-    </block> -->
   </view>
 </view>
 <view class="footbar">
@@ -151,4 +123,8 @@
     </button>
   </view>
 </view>
+
+<!--小程序的二维码只能在上线的项目中有效，项目未上线，手机上预览无效果-->
+<view bind:tap="onTapQrcode">点击获取二维码</view>
+<image src='{{qrcode}}' />
 <v-loading class="loading-center" wx:if="{{false}}" />

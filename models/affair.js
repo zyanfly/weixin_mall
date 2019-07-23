@@ -72,6 +72,12 @@ class AffairModel extends HTTP {
       url: 'judge_likes'
     })
   }
+
+  getAccessToken() {
+    return this.request({
+      url: 'access_token/achieve',
+    })
+  }
 }
 
 export {
