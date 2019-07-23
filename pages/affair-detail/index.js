@@ -33,7 +33,7 @@ Page({
     affairModel.getAffair(this.data.id)
       .then(res => {
         this.setData({
-          affair: res,      
+          affair: res,
           //分离出来容易进行数据更新
           affair_comments: res.affair_comments,
           affair_likes: res.affair_likes,
@@ -44,19 +44,19 @@ Page({
         })
         //合并分享的同类项,功能实现，待优化
         var avatars = []
-        for (let index = 0; index < this.data.affair_shares.length; index++){
+        for (let index = 0; index < this.data.affair_shares.length; index++) {
           avatars.unshift(this.data.affair_shares[index].guest.avatar)
         }
         var unique_avatars = []
-        for (let index = 0; index < avatars.length; index++){
-          if (unique_avatars.indexOf(avatars[index]) == -1){
+        for (let index = 0; index < avatars.length; index++) {
+          if (unique_avatars.indexOf(avatars[index]) == -1) {
             unique_avatars.push(avatars[index])
           }
         }
         var unique_affair_shares = []
-        for (let i = 0; i < unique_avatars.length; i++){
-          for (let index = 0; index < this.data.affair_shares.length; index++){
-            if (unique_avatars[i] == this.data.affair_shares[index].guest.avatar){
+        for (let i = 0; i < unique_avatars.length; i++) {
+          for (let index = 0; index < this.data.affair_shares.length; index++) {
+            if (unique_avatars[i] == this.data.affair_shares[index].guest.avatar) {
               unique_affair_shares.push(this.data.affair_shares[index])
               break;
             }
@@ -246,8 +246,8 @@ Page({
   // 分享好友回调
   onShareAppMessage(e) {
     let that = this;
-    console.log(that.data.affair)
-    console.log(e);
+
+    if(this.data.authorized){
     const share_guest = {
       id: that.data.id,
       guest: {
@@ -273,16 +273,30 @@ Page({
           affair_shares: that.data.affair_shares,
           affair_shares_count: that.data.affair_shares_count + 1
         })
-      }).
-      catch(res => {
+      })
+      .catch(res => {
         console.log(res);
       })
+    } else{
+      affairModel.createAffairShare(that.data.affair.id)
+        .then(res => {
+          wx.showToast({
+            title: '成功分享',
+            icon: "none"
+          })
+          that.setData({
+            affair_shares_count: that.data.affair_shares_count + 1
+          })
+        })
+        .catch(res => {
+          console.log(res);
+        })
+    } 
     return {
       title: that.data.affair.content,
       path: '/pages/affair-detail/index?id=' + that.data.affair.id,
       success: (e) => {
         console.log('success');
-
       },
       fail: (e) => {
         console.log(e);

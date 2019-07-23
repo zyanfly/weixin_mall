@@ -23,11 +23,11 @@ Page({
     showModal: false,
   },
 
-  onLoad: function () {
+  onLoad: function() {
     this._loadData();
   },
 
-  onShow: function (event) {
+  onShow: function(event) {
     //解决评论返回评论字段未刷新问题，问题是初始化，onShow和onLoad同时执行,重复执行刷新问题
     affairModel.getAffairs()
       .then(res => {
@@ -40,7 +40,7 @@ Page({
       })
   },
 
-  _loadData: function (callback) {
+  _loadData: function(callback) {
     this.userAuthorized()
     affairModel.getAffairs()
       .then(res => {
@@ -67,7 +67,7 @@ Page({
       })
   },
 
-  onTapLike: function (e) {
+  onTapLike: function(e) {
     const likes_status_id = e.currentTarget.dataset.likes_status_id
     const like_status = this.data.likes_status[e.currentTarget.dataset.likes_status_id]
     const affair_id = e.currentTarget.dataset.affair_id
@@ -79,7 +79,7 @@ Page({
             icon: "none"
           })
           this.data.likes_status.splice(likes_status_id, 1, false)
-          this.data.affairs[likes_status_id].affair_likes_count = this.data.affairs[likes_status_id].affair_likes_count-1
+          this.data.affairs[likes_status_id].affair_likes_count = this.data.affairs[likes_status_id].affair_likes_count - 1
           for (let index = 0; index < this.data.affairs[likes_status_id].affair_likes.length; index++) {
             if (this.data.affairs[likes_status_id].affair_likes[index].guest.avatar == this.data.userInfo.avatarUrl) {
               this.data.affairs[likes_status_id].affair_likes.splice(index, 1)
@@ -110,20 +110,20 @@ Page({
             created_at: comment.getTime()
           }
           this.data.likes_status.splice(likes_status_id, 1, true)
-          this.data.affairs[likes_status_id].affair_likes_count = this.data.affairs[likes_status_id].affair_likes_count+1
+          this.data.affairs[likes_status_id].affair_likes_count = this.data.affairs[likes_status_id].affair_likes_count + 1
           this.data.affairs[likes_status_id].affair_likes.unshift(like_guest)
           this.setData({
             likes_status: this.data.likes_status,
             affairs: this.data.affairs
           })
         }).
-        catch(res => {
-          console.log(res);
-        })
+      catch(res => {
+        console.log(res);
+      })
     }
   },
 
-  affairComment: function (event) {
+  affairComment: function(event) {
     const affair_id = event.currentTarget.dataset.affair_id
     const from = event.currentTarget.dataset.from
     wx.navigateTo({
@@ -132,14 +132,14 @@ Page({
   },
 
   // 进入详情
-  tapContent: function (e) {
+  tapContent: function(e) {
     const id = e.currentTarget.dataset.id
     wx.navigateTo({
       url: '/pages/affair-detail/index?id=' + id
     })
   },
 
-  onPullDownRefresh: function () {
+  onPullDownRefresh: function() {
     this._loadData(() => {
       wx.stopPullDownRefresh()
     });
@@ -151,7 +151,7 @@ Page({
     })
   },
 
-  showModal(e){
+  showModal(e) {
     this.setData({
       showModal: true,
       showId: e.target.dataset.id
@@ -159,6 +159,7 @@ Page({
   },
 
   // 分享
+  //首页分享不需要判断是否授权头像和名字，这里分享增长的字段未变化，需要修改逻辑
   onShareAppMessage(e) {
     if (e.from === 'button') {
       console.log('来自页面button')
@@ -167,7 +168,6 @@ Page({
     let id = this.data.showId;
     affairModel.createAffairShare(id)
       .then(res => {
-        console.log(2)
         let list = this.data.affairs;
         console.log(list)
         for (let i = 0; i < list.length; i++) {
@@ -178,18 +178,11 @@ Page({
         this.setData({
           affairs: list
         })
-        // wx.showToast({
-        //   title: '成功分享',
-        //   icon: "none"
-        // })
-        // that.data.affair.affair_shares_count+1;
-        // that.setData({
-        //   affair_shares_count: that.data.affair_shares_count + 1
-        // })
-      }).
-      catch(res => {
+      })
+      .catch(res => {
         console.log(res);
       })
+
     return {
       title: 'test',
       path: 'pages/affair-detail/index?id=',
@@ -230,5 +223,5 @@ Page({
     })
   },
 
-  onShareAppMessage: function () { },
+  onShareAppMessage: function() {},
 })
