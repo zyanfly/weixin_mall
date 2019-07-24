@@ -6,7 +6,7 @@
     "pages/cart/index",
     "pages/my/index",
     "pages/product-detail/index",
-    "pages/directly-pay/index",
+    "pages/pay-directly/index",
     "pages/support/index",
     "pages/merchant-images/index",
     "components/product/index",
