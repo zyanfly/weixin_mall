@@ -1,2 +1,41 @@
-<!--pages/product-after/index.wxml-->
-<text>pages/product-after/index.wxml</text>
+<view bind:tap="getAllPaidOrders">付款订单</view>
+<view data-after_status="1" bind:tap="getOrdersByAfterStatus">正在退货</view>
+<view data-after_status="2" bind:tap="getOrdersByAfterStatus">退货成功</view>
+<view data-after_status="3" bind:tap="getOrdersByAfterStatus">退货失败</view>
+
+
+<view class="my-order">
+  <view class="item-main">
+    <block wx:for="{{orders}}" wx:key="">
+      <view class="order-item">
+        <view class="order-header">
+          <text>订单编号:</text>
+          <text class="order-no-txt">{{item.after_no}}</text>
+        </view>
+        <view class="order-main">
+          <view class="item-left">
+            <image src="{{item.snap_img}}"></image>
+          </view>
+          <view class="item-middle">
+            <view>{{item.snap_name}}</view>
+            <view>{{item.total_count}}件商品</view>
+          </view>
+          <view class="">
+            <view wx:if="{{item.after_status==0}}">
+              <form bind:submit="changeOrderAfterStatus">
+                <input hidden="{{true}}" name='order_id' value="{{item.id}}"></input>
+                <button form-type="submit">申请退货</button>
+              </form>
+            </view>
+            <text class="order-status-txt payed" wx:if="{{item.after_status==1}}">正在退货</text>
+            <text class="order-status-txt payed" wx:if="{{item.after_status==2}}">退货成功</text>
+            <text class="order-status-txt payed" wx:if="{{item.after_status==3}}">退货失败</text>
+          </view>
+        </view>
+        <view class="order-bottom" wx:if="{{item.status==1}}">
+          <text>实付:￥{{item.total_price}}</text>
+        </view>
+      </view>
+    </block>
+  </view>
+</view>

@@ -4,7 +4,6 @@ import {
   from '../utils/http'
 
 class OrderModel extends HTTP {
-  data = null
   createOrder(param) {
     return this.request({
       method: 'POST',
@@ -26,6 +25,22 @@ class OrderModel extends HTTP {
       url: 'order/' + status
     })
   }
+
+  getOrdersByAfterStatus(after_status){
+    return this.request({
+      url: 'after_order/' + after_status
+    })
+  }
+
+  changeAfterStatus(order_id) {
+    return this.request({
+      method: 'POST',
+      url: 'change_after_status',
+      data: {
+        order_id: order_id
+      }
+    })
+  } 
 }
 
 export {

@@ -1,66 +1,71 @@
-// pages/product-after/index.js
+import {
+  OrderModel
+} from '../../models/order'
+
+const orderModel = new OrderModel()
+
+
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
-
+    orders: null
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-
+  onLoad: function () {
+    orderModel.getOrder(1)
+      .then(res => {
+        this.setData({
+          orders: res
+        })
+      })
+      .catch(res => {
+        console.log(res);
+      })
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
+  getAllPaidOrders: function(){
+    orderModel.getOrder(1)
+      .then(res => {
+        this.setData({
+          orders: res
+        })
+      })
+      .catch(res => {
+        console.log(res);
+      })
   },
 
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
+  changeOrderAfterStatus: function(event){
+    const order_id = event.detail.value.order_id
+    orderModel.changeAfterStatus(order_id)
+      .then(res => {
+        this.setData({
+          orders: res,
+        })
+        console.log(res)
+      })
+      .catch(res => {
+        console.log(res);
+      })
   },
 
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
+  getOrdersByAfterStatus: function(event){
+    const after_status = event.currentTarget.dataset.after_status
+    orderModel.getOrdersByAfterStatus(after_status)
+      .then(res => {
+        this.setData({
+          orders: res,
+        })
+        console.log(res)
+      })
+      .catch(res => {
+        console.log(res);
+      })
   },
 
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
   onPullDownRefresh: function () {
-
+    wx.stopPullDownRefresh()
   },
 
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
   onShareAppMessage: function () {
-
   }
 })
