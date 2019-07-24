@@ -6,7 +6,7 @@
     "pages/cart/index",
     "pages/my/index",
     "pages/product-detail/index",
-    "pages/directly-pay/index",
+    "pages/pay-directly/index",
     "pages/support/index",
     "pages/merchant-images/index",
     "components/product/index",
@@ -14,7 +14,8 @@
     "pages/affair-comment/index",
     "pages/product-keep/index",
     "pages/order/index",
-    "pages/product-after/index"
+    "pages/product-after/index",
+    "pages/orders/index"
   ],
   "window": {
     "navigationBarTitleText": "象湖大鸡腿",

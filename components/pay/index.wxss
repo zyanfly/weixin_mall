@@ -1,17 +1,17 @@
-.pay-container{
-    display: flex;
-    justify-content: space-between;
-    align-items:center;
-    padding:20rpx 30rpx;
-    font-size:14px;
-    border-bottom:1px solid #ddd;
-    background-color:#fff;
+.pay-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20rpx 30rpx;
+  font-size: 14px;
+  border-bottom: 1px solid #ddd;
+  background-color: #fff;
 }
 
-.pay_btn{
-    padding:4rpx 40rpx;
-    background-color:#FF9900;
-    color:#fff;
-    font-size:12px;
-    border-radius:4px;
+.pay_btn {
+  padding: 4rpx 40rpx;
+  background-color: #f90;
+  color: #fff;
+  font-size: 12px;
+  border-radius: 4px;
 }
