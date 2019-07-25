@@ -114,7 +114,7 @@ Page({
         that.setData({
           order_id: res.id
         })
-        return payModel.createOrderPay(this.data.account)
+        return payModel.createOrderPay(this.data.account, this.data.order_id)
       })
       .then(res => {
         wx.requestPayment({
@@ -124,6 +124,7 @@ Page({
           signType: 'MD5',
           paySign: res.paySign,
           success(res) {
+            console.log(res)
             orderModel.changeOrderStatus(that.data.order_id)
           },
           fail(res) { },
