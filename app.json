@@ -15,7 +15,8 @@
     "pages/product-keep/index",
     "pages/order/index",
     "pages/product-after/index",
-    "pages/orders/index"
+    "pages/orders/index",
+    "pages/pay-result/index"
   ],
   "window": {
     "navigationBarTitleText": "象湖大鸡腿",

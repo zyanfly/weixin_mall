@@ -126,8 +126,15 @@ Page({
           success(res) {
             console.log(res)
             orderModel.changeOrderStatus(that.data.order_id)
+            wx.navigateTo({
+              url: '../pay-result/index?id=' + that.data.order_id + '&flag=' + true + '&from=order'
+            })
           },
-          fail(res) { },
+          fail(res) { 
+            wx.navigateTo({
+              url: '../pay-result/index?id=' + that.data.order_id + '&flag=' + false + '&from=order'
+            })
+          },
           complete(res) { console.log(res) }
         })
       }).

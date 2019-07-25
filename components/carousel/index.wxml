@@ -1,6 +1,6 @@
 <view class="container home-container">
     <swiper indicator-dots="true" autoplay="true" class="swiper" interval="2000" circular="true">
-        <block wx:for="{{carousels}}">
+        <block wx:for="{{carousels}}" wx:key="">
             <swiper-item class="banner-item">
                 <image class="item-image" src="{{item.pic}}" mode="aspectFill" />
             </swiper-item>
