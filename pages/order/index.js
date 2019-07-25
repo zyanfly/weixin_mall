@@ -111,17 +111,21 @@ Page({
     //支付分两步，第一步是生成订单号，然后根据订单号支付
     orderModel.createOrder(orderInfo)
       .then(res => {
+        that.setData({
+          order_id: res.id
+        })
         return payModel.createOrderPay(this.data.account)
       })
       .then(res => {
-        console.log(res)
         wx.requestPayment({
           timeStamp: res.timeStamp,
           nonceStr: res.nonceStr,
           package: res.package,
           signType: 'MD5',
           paySign: res.paySign,
-          // success(res) {console.log(res)},
+          success(res) {
+            orderModel.changeOrderStatus(that.data.order_id)
+          },
           fail(res) { },
           complete(res) { console.log(res) }
         })

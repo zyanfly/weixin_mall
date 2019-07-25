@@ -40,7 +40,17 @@ class OrderModel extends HTTP {
         order_id: order_id
       }
     })
-  } 
+  }
+  
+  changeOrderStatus(order_id) {
+    return this.request({
+      method: 'POST',
+      url: 'change_order_status',
+      data: {
+        order_id: order_id
+      }
+    })
+  }
 }
 
 export {
