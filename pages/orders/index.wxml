@@ -13,7 +13,7 @@
         <view class="order-item">
           <view class="order-header" ontap="showOrderDetailInfo" data-id="{{item.id}}">
             <text>订单编号:</text>
-            <text class="order-no-txt">{{item.order_no}}</text>
+            <text class="order-no-txt">{{item.after_no}}</text>
           </view>
           <view class="order-main" ontap="showOrderDetailInfo" data-id="{{item.id}}">
             <view class="item-left">

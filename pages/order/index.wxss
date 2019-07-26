@@ -83,8 +83,6 @@
     color:#999999;
 }
 
-
-
 .product-item{
     display: flex;
     justify-content: space-around;

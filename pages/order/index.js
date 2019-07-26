@@ -114,6 +114,7 @@ Page({
         that.setData({
           order_id: res.id
         })
+        that.deleteProducts();
         return payModel.createOrderPay(this.data.account, this.data.order_id)
       })
       .then(res => {
@@ -163,6 +164,14 @@ Page({
         }
       }
     });
+  },
+
+  deleteProducts: function () {
+    var ids = [], arr = this.data.productsArr;
+    for (let i = 0; i < arr.length; i++) {
+      ids.push(arr[i].id);
+    }
+    cartModel.delete(ids);
   },
 
   onPullDownRefresh: function () {
