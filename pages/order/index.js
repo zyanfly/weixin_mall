@@ -111,18 +111,31 @@ Page({
     //支付分两步，第一步是生成订单号，然后根据订单号支付
     orderModel.createOrder(orderInfo)
       .then(res => {
-        return payModel.createOrderPay(this.data.account)
+        that.setData({
+          order_id: res.id
+        })
+        that.deleteProducts();
+        return payModel.createOrderPay(this.data.account, this.data.order_id)
       })
       .then(res => {
-        console.log(res)
         wx.requestPayment({
           timeStamp: res.timeStamp,
           nonceStr: res.nonceStr,
           package: res.package,
           signType: 'MD5',
           paySign: res.paySign,
-          // success(res) {console.log(res)},
-          fail(res) { },
+          success(res) {
+            console.log(res)
+            orderModel.changeOrderStatus(that.data.order_id)
+            wx.navigateTo({
+              url: '../pay-result/index?id=' + that.data.order_id + '&flag=' + true + '&from=order'
+            })
+          },
+          fail(res) { 
+            wx.navigateTo({
+              url: '../pay-result/index?id=' + that.data.order_id + '&flag=' + false + '&from=order'
+            })
+          },
           complete(res) { console.log(res) }
         })
       }).
@@ -151,6 +164,14 @@ Page({
         }
       }
     });
+  },
+
+  deleteProducts: function () {
+    var ids = [], arr = this.data.productsArr;
+    for (let i = 0; i < arr.length; i++) {
+      ids.push(arr[i].id);
+    }
+    cartModel.delete(ids);
   },
 
   onPullDownRefresh: function () {

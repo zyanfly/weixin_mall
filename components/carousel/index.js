@@ -1,11 +1,11 @@
 Component({
-    properties: {
-        carousels: {
-            type: Array
-        }
-    },
+  properties: {
+    carousels: {
+      type: Array
+    }
+  },
 
-    data: {},
+  data: {},
 
-    methods: {}
+  methods: {}
 })

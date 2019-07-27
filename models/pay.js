@@ -17,14 +17,14 @@ class PayModel extends HTTP {
     })
   }
 
-  createOrderPay(price) {
-    console.log(price)
+  createOrderPay(price, order_id) {
     return this.request({
       method: 'POST',
       url: 'order_pay',
       data: {
         price: price,
-        token: wx.getStorageSync('token')
+        token: wx.getStorageSync('token'),
+        order_id: order_id
       }
     })
   }
