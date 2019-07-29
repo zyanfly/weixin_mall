@@ -134,7 +134,7 @@
 .accounts-btn{
     width: 50%;
     font-size: 28rpx;
-    border-right: 3rpx dotted #fff;
+    /* border-right: 3rpx dotted #fff; */
 }
 
 .price-text{

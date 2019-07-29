@@ -11,11 +11,9 @@ Page({
   },
 
   onLoad: function () {
-
   },
 
   /*
-   * 页面重新渲染，包括第一次，和onLoad方法没有直接关系
    * 页面重新渲染，onLoad不再执行，onShow会重新执行
    */
   onShow: function () {
@@ -50,10 +48,11 @@ Page({
    * 计算总金额和选择的商品总数
    * */
   _calcTotalAccountAndCounts: function (data) {
-    var len = data.length,
-      account = 0,
-      selectedCounts = 0,
+    var len = data.length, 
+      account = 0, 
+      selectedCounts = 0, 
       selectedTypeCounts = 0;
+    //设置multiple为10000,避免account / (multiple * multiple)中出现除不尽的问题
     let multiple = 100;
     for (let i = 0; i < len; i++) {
       //避免 0.05 + 0.01 = 0.060 000 000 000 000 005 的问题，乘以 100 *100
@@ -66,7 +65,7 @@ Page({
     return {
       selectedCounts: selectedCounts,
       selectedTypeCounts: selectedTypeCounts,
-      account: account / (multiple * multiple)
+      account: (account / (multiple * multiple)).toFixed(2)
     }
   },
 
@@ -88,7 +87,7 @@ Page({
     this._resetCartData();
   },
 
-  /*根据商品id得到 商品所在下标*/
+  /*根据商品id得到缓存中商品所在下标*/
   _getProductIndexById: function (id) {
     var data = this.data.cartData,
       len = data.length;
@@ -140,9 +139,9 @@ Page({
 
   /*查看商品详情*/
   onProductsItemTap: function (event) {
-    var id = cartModel.getDataSet(event, 'id');
+    var id = event.currentTarget.dataset.id
     wx.navigateTo({
-      url: '../product/index?id=' + id
+      url: '../product-detail/index?bid=' + id
     })
   }
 })

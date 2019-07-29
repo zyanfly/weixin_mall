@@ -1,12 +1,5 @@
-<!-- <block wx:for="{{products}}" wx:key="">
-  <view bind:tap="tapProduct" data-id="{{item.id}}">
-    <text>{{item.name}}</text>
-    <text>{{item.current_price}}</text>
-    <image class="pic" src="{{item.pic}}" />
-  </view>
-</block> -->
 <view class="container">
-  <view class="prod_wrapper" wx:for="{{products}}">
+  <view class="prod_wrapper" wx:for="{{products}}" wx:key="">
     <v-product class="product_item" wx:key="index" product="{{item}}" />
   </view>
 </view>

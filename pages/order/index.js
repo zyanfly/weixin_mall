@@ -36,6 +36,30 @@ Page({
     this._loadData();
   },
 
+  // onShow: function () {
+  //   if (this.data.id) {
+  //     var that = this;
+  //     //下单后，支付成功或者失败后，点左上角返回时能够更新订单状态 所以放在onshow中
+  //     var id = this.data.id;
+  //     order.getOrderInfoById(id, (data) => {
+  //       that.setData({
+  //         orderStatus: data.status,
+  //         productsArr: data.snap_items,
+  //         account: data.total_price,
+  //         basicInfo: {
+  //           orderTime: data.create_time,
+  //           orderNo: data.order_no
+  //         },
+  //       });
+
+  //       // 快照地址
+  //       var addressInfo = data.snap_address;
+  //       addressInfo.totalDetail = address.setAddressInfo(addressInfo);
+  //       that._bindAddressInfo(addressInfo);
+  //     });
+  //   }
+  // },
+
   _loadData: function (callback) {
     addressModel.getAddress()
       .then(res => {
@@ -68,7 +92,9 @@ Page({
         //保存地址
         addressModel.updateAddress(res)
           .then(res => {
-            // console.log(res)
+            // 地址保存成功提示
+          }, res => {
+            // 地址保存失败提示
           })
           .catch(res => {
             console.log(res);

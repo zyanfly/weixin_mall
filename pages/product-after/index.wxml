@@ -11,6 +11,10 @@
           <text>订单编号:</text>
           <text class="order-no-txt">{{item.after_no}}</text>
         </view>
+        <view class="order-header">
+          <text>下单时间:</text>
+          <text class="order-no-txt">{{item.created_at}}</text>
+        </view>
         <view class="order-main">
           <view class="item-left">
             <image src="{{item.snap_img}}"></image>
