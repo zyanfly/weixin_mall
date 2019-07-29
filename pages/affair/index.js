@@ -66,6 +66,42 @@ Page({
         console.log(res);
       })
   },
+  // 点赞
+  // TODO 关于是否点赞后重新获取数据
+  likeTap(e){
+    console.log(e)
+    if(e.detail.isLike){
+      affairModel.deleteAffairLike(e.detail.id).then(res=>{
+        wx.showToast({
+          title:'取消点赞',
+          icon:'none'
+        })
+        this._loadData();
+      }).catch(res=>{
+        console.log(res);
+      })
+    }else{
+      affairModel.createAffairLike(e.detail.id).then(res=>{
+        wx.showToast({
+          title:'成功点赞',
+          icon:'none'
+        })
+        this._loadData();
+      })
+    }
+  },
+  onLikeLogin(e){
+    console.log(e)
+    let userInfo = e.detail.userInfo;
+    if(userInfo){
+      this.setData({
+        authorized:e.detail.authorized,
+        userInfo: userInfo
+      })
+    }
+    console.log(userInfo.nickname)
+    guestModel.updateGuest(userInfo.nickName,userInfo.avatarUrl,userInfo.gender);
+  },
 
   onTapLike: function(e) {
     const likes_status_id = e.currentTarget.dataset.likes_status_id

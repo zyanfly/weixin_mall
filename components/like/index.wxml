@@ -1,5 +1,12 @@
-<!-- components/like/index.wxml -->
-<view bind:tap="onLike" class="container">
-    <image src="{{like?yesSrc:noSrc}}" />
-    {{count}}
+<!-- 已登录状态 -->
+<view wx:if="{{isLogin}}" bind:tap="onLike" class="container">
+    <!-- <image src="{{like?yesSrc:noSrc}}" /> -->
+    <icon class="iconfont {{isLike?'icon-liked':'icon-like'}}" />
+    <text>{{affair.affair_likes.length}}</text>
 </view>
+
+<!-- 未登录状态 -->
+<button class="btn container" wx:if="{{!isLogin}}" open-type="getUserInfo" bind:getuserinfo="onLogin">
+  <icon class="iconfont icon-like" />
+  <text>{{affair.affair_likes.length}}</text>
+</button>

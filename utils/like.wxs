@@ -1,0 +1,36 @@
+function likeText(arr){
+  var nameList = [];
+  var nameString = '';
+  var endText = '';
+  if(!arr){
+    return '';
+  }
+  for(var i=0;i<arr.length;i++){
+    if(i<3){
+      nameList.push(arr[i].guest.nickname);
+    }
+  }
+  nameString = nameList.join('，');
+  console.log(nameString)
+  switch(arr.length){
+    case 0:
+      endText = '';
+      break;
+    case 1:
+      endText = '觉得很赞';
+      break;
+    case 2:
+      endText = '共2人觉得很赞';
+      break;
+    case 3:
+      endText = '共3人觉得很赞';
+      break;
+    default:
+      endText = '等'+arr.legnth+'人觉得很赞';
+  }
+  return nameString+endText
+}
+
+module.exports = {
+  likeText: likeText
+}

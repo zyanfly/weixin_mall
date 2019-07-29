@@ -1,12 +1,15 @@
-
+@import '../../app.wxss';
 .container{
     display:flex;
     align-items:center;
     padding: 10rpx;
+    font-size:12px;
+    line-height:40rpx;
 }
 
-.container image{
-   width:32rpx;
-   height:32rpx;
+.container .iconfont{
    margin-right:10rpx;
+}
+.icon-liked{
+  color:#FF9900;
 }

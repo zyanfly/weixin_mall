@@ -173,6 +173,9 @@
 .c_name {
   color: #2B59BC;
 }
+.c_like{
+  display:flex;
+}
 
 /* 评论按钮 */
 

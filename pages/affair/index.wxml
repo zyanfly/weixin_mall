@@ -1,3 +1,4 @@
+<wxs src="../../utils/like.wxs" module="util"></wxs>
 <view>
   <block wx:for="{{affairs}}" wx:key="" wx:for-index="idx">
     <view class="affair_container">
@@ -8,7 +9,7 @@
         <view class="c_title">
           <view class="c_title_left">浏览{{item.view}}次</view>
           <view class="c_title_right">
-            <v-like like="{{false}}" count="{{item.affair_likes_count}}" readOnly="{{true}}" class="like" />
+            <v-like class="like" readOnly="{{true}}" userAvatar="{{userInfo.avatarUrl}}" affair="{{item}}" isLogin="{{authorized}}" bind:triggerLike="likeTap" bind:triggerLogin="onLikeLogin"/>
             <!-- <v-share count="{{item.affair_shares_count}}" comment_id="{{item.id}}" /> -->
             <button data-id="{{item.id}}" class="share" bind:tap="showModal">
               <image src="/images/icon/share.png" /> {{item.affair_shares_count}}
@@ -17,19 +18,18 @@
         </view>
         <!-- 放置评论, 评论至多显示三条，如果多余三条就显示更多，查看跳转到affair_detail -->
         <view data-id="{{item.id}}" class="comments" bind:tap="tapContent">
-          <view class="c_item">
-            <text class="c_name">
+          <view class="c_item c_like">
+            <!-- <text class="c_name"> -->
               <!--设计要求，总共有4种情况
-                1.没有人的时候，这里的内容全部因此,
+                1.没有人的时候，这里的内容全部隐藏,
                 2.一个人的时候，直接显示名字，比如jay,
                 3.多于2个人的时候并少于等于3个人的时候，名称之间加逗号”,“并显示人数，比如  jay,jayzen共2个人
                 4.多余3个人的时候，示例如下，jay,jayzen,zen等4个人
               -->
-              <block wx:for="{{item.affair_likes}}" wx:key="">
-                {{item.guest.nickname}}
-              </block>
-              觉得很赞
-            </text>
+              <view class="c_name" wx:if="{{item.affair_likes.length}}">
+                {{util.likeText(item.affair_likes)}}
+              </view>
+            <!-- </text> -->
           </view>
           <view class="c_item" wx:for="{{item.affair_comments}}" wx:key="index" wx:if="{{index<3}}">
             <text class="c_name">{{item.guest.nickname}}:</text>

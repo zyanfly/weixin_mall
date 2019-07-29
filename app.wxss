@@ -9,3 +9,11 @@ page{
   display:flex;
 }
 
+.btn{
+  margin:0;
+  padding:0;
+  background-color:transparent;
+}
+.btn::after{
+  border:none;
+}
