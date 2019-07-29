@@ -1,0 +1,31 @@
+<!-- 底部购物车组件 -->
+<view class="cart">
+  <!-- 客服 -->
+  <button class="btn_box" open-type="contact">
+    <icon class="box_icon iconfont icon-wechat-outline" />
+    <text class="box_text">客服</text>
+  </button>
+  <!-- 收藏 -->
+  <button class="btn_box" wx:if="{{keep_status}}" bind:tap="removeProductKeep">
+    <icon class="box_icon iconfont icon-collected" />
+    <text class="box_text">收藏</text>
+  </button>
+  <button class="btn_box" wx:if="{{!keep_status}}" bind:tap="addProductKeep">
+    <icon class="box_icon iconfont icon-collect-un" />
+    <text class="box_text">收藏</text>
+  </button>
+  <!-- 购物车 -->
+  <button class="btn_box" bind:tap="onCartTap">
+    <icon class="box_icon iconfont icon-cart" />
+    <text class="box_text">购物车</text>
+    <!-- {{cartTotalCounts}} -->
+  </button>
+  <!-- 加入购物车 -->
+  <view class="btn_box_big f-all-c incart">加入购物车</view>
+  <!-- <form bind:submit="onAddingToCartTap">
+    <input placeholder='数量' name='productCounts'></input>
+    <button form-type="submit" class="submit">加入购物车</button>
+  </form> -->
+  <!-- 立即购买 -->
+  <view class="btn_box_big f-all-c buynow">立即购买</view>
+</view>

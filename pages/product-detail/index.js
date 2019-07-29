@@ -18,7 +18,8 @@ Page({
     product: null,
     authorized: false,
     cartTotalCounts: 0,
-    loadingCenter: true
+    loadingCenter: true,
+    currentTab: 2
   },
 
   onLoad: function (options) {
@@ -232,7 +233,7 @@ Page({
   },
 
   /*添加到购物车*/
-  onAddingToCartTap: function (events) { 
+  onAddingToCartTap: function (events) {
     this.setData({
       productCounts: Number(events.detail.value.productCounts)
     })
@@ -261,5 +262,13 @@ Page({
   },
 
   onShareAppMessage: function () {
+  },
+
+  /** 切换tab */
+  switch(e){
+    let index = e.target.dataset.index;
+    this.setData({
+      currentTab: index
+    })
   }
 })

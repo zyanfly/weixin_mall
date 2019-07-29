@@ -7,87 +7,114 @@
     </block>
   </swiper>
 </view>
-
-<view>{{product.name}}</view>
-<view>{{product.current_price}}</view>
-<view>分享按钮</view>
-<view>浏览1228次</view>
-
-<!--商品详情-->
-<view>商品详情</view>
-<block wx:for="{{product.product_details}}" wx:key="">
-  <image class="pic" src="{{item.pic}}" />
-</block>
-
-<!--商品属性-->
-<view>商品属性</view>
-<block wx:for="{{product.product_attributes}}" wx:key="">
-  <view>
-    <text>{{item.name}}</text>
-    <text>{{item.content}}</text>
+<!-- 商品名称，价格，分享，浏览， -->
+<view class="product_info">
+  <view class="info_left">
+    <view class="l_price">￥{{product.current_price}}</view>
+    <view class="l_name">{{product.name}}</view>
   </view>
-</block>
-
-<!--评论列表-->
-<view>评论列表{{product_comments_count}}</view>
-<block wx:for="{{product_comments}}" wx:key="">
-  <view>
-    <text>{{item.guest.nickname}}</text>
-    <text>{{item.guest.gender}}</text>
-    <text>{{item.created_at}}</text>
-    <image class="pic" src="{{item.guest.avatar}}" />
-    <text>{{item.content}}</text>
-    <text bind:tap="deleteProductComment" data-product_comment_id="{{item.id}}" wx:if="{{authorized}}">删除</text>
+  <view class="info_right">
+    <image src="/images/icon/share.png" />
+    <text>分享</text>
   </view>
-</block>
-<!--点赞列表-->
-<view>点赞列表{{product_likes_count}}</view>
-<block wx:for="{{product_likes}}" wx:key="">
-  <view>
-    <image class="pic" src="{{item.guest.avatar}}" />
-  </view>
-</block>
-
-<!--商品评论-->
-<view>商品评论</view>
-<form bind:submit="addProductComment" wx:if="{{authorized}}">
-  <input placeholder='评论' name='content'></input>
-  <input hidden="{{true}}" name='product_id' value="{{product.id}}"></input>
-  <button form-type="submit" class="submit">评论</button>
-</form>
-
-<button wx:if="{{!authorized}}" open-type="getUserInfo" bind:getuserinfo="onGetUserInfo" class="submit">
-  评论(未登录)
-</button>
-<!--商品点赞-->
-<view>商品点赞</view>
-<view wx:if="{{authorized}}">
-  <button form-type="submit" wx:if="{{!like_status}}" data-product_id="{{product.id}}" bind:tap="addProductLike">点赞</button>
-  <button form-type="submit" wx:if="{{like_status}}" data-product_id="{{product.id}}" bind:tap="deleteProductLike">取消点赞</button>
 </view>
-<button wx:if="{{!authorized}}" open-type="getUserInfo" bind:getuserinfo="onGetUserInfo" class="submit">
-  点赞(未登录)
-</button>
-
-<!--底部内容，依次是客服，收藏(修改主页为收藏)，购物车，加入购物车，立即购买-->
-<view class="wechat">
-  <button open-type="contact">
-    <image open-type="contact" src="/images/icon/wechat.png" />
+<view class="see">
+  <view>运费0元</view>
+  <view>浏览1228次</view>
+</view>
+<!-- tab -->
+<view class="product_tab">
+  <view class="{{currentTab==0?'active':''}}" data-index="0" bind:tap="switch">商品详情</view>
+  <view class="{{currentTab==1?'active':''}}" data-index="1" bind:tap="switch">属性</view>
+  <view class="{{currentTab==2?'active':''}}" data-index="2" bind:tap="switch">评论({{product_comments_count}})</view>
+</view>
+<!-- 商品详情 -->
+<view class="p_detail" hidden="{{currentTab!=0}}">
+  <block wx:for="{{product.product_details}}">
+    <image src="{{item.pic}}" mode="aspectFill" />
+  </block>
+</view>
+<!-- 属性 -->
+<view class="p_info" hidden="{{currentTab!=1}}">属性</view>
+<!-- 评论 -->
+<view class="p_comment" hidden="{{currentTab!=2}}">
+  <!-- 点赞 -->
+  <view class="like">
+    <view class="like_btn">
+      <image src="/images/icon/like_btn.png" />
+    </view>
+    <view class="like_user">
+      <view class="user_left">
+        <text>14</text>
+        <text>点赞人数</text>
+      </view>
+      <view class="user_right">
+        <block wx:for="{{18}}" wx:if="{{index<=10}}">
+          <image src="{{product.product_likes[0].guest.avatar}}" style="left:-{{index*15}}rpx;" />
+        </block>
+        <view wx:if="{{true}}" class="like_more" style="left:-{{18+10*15}}rpx;">
+          <image src="/images/icon/point.png"/>
+        </view>
+      </view>
+    </view>
+  </view>
+  <!-- 评论 -->
+  <view>商品评论</view>
+  <form bind:submit="addProductComment" wx:if="{{authorized}}">
+    <input placeholder='评论' name='content'></input>
+    <input hidden="{{true}}" name='product_id' value="{{product.id}}"></input>
+    <button form-type="submit" class="submit">评论</button>
+  </form>
+  <button wx:if="{{!authorized}}" open-type="getUserInfo" bind:getuserinfo="onGetUserInfo" class="submit">
+    评论(未登录)
   </button>
+  <view class="comment_item" wx:for="{{product_comments}}" wx:key="{{index}}">
+    <image src="{{item.guest.avatar}}" />
+    <view class="i_center">
+      <view class="i_name">{{item.guest.nickname}}</view>
+      <view class="i_time">
+        {{item.created_at}}
+        <text class="i_delete" bind:tap="deleteProductComment" data-product_comment_id="{{item.id}}" wx:if="{{authorized}}">
+        删除
+      </text>
+      </view>
+      <view>{{item.content}}</view>
+    </view>
+  </view>
+  <!-- <view>评论列表{{product_comments_count}}</view>
+  <block wx:for="{{product_comments}}" wx:key="{{index}}">
+    <view>
+      <text>{{item.guest.nickname}}</text>
+      <text>{{item.guest.gender}}</text>
+      <text>{{item.created_at}}</text>
+      <image class="pic" src="{{item.guest.avatar}}" />
+      <text>{{item.content}}</text>
+
+    </view>
+  </block> -->
+  <!-- 点赞列表 -->
+  <!-- <view>点赞列表{{product_likes_count}}</view>
+  <block wx:for="{{product_likes}}" wx:key="">
+    <view>
+      <image class="pic" src="{{item.guest.avatar}}" />
+    </view>
+  </block> -->
+  <!-- 商品评论 -->
+
+  <!-- 商品点赞 -->
+  <!-- <view>商品点赞</view>
+  <view wx:if="{{authorized}}">
+    <button form-type="submit" wx:if="{{!like_status}}" data-product_id="{{product.id}}" bind:tap="addProductLike">
+      点赞
+    </button>
+    <button form-type="submit" wx:if="{{like_status}}" data-product_id="{{product.id}}" bind:tap="deleteProductLike">
+      取消点赞
+    </button>
+  </view>
+  <button wx:if="{{!authorized}}" open-type="getUserInfo" bind:getuserinfo="onGetUserInfo" class="submit">
+    点赞(未登录)
+  </button> -->
 </view>
-<view wx:if="{{keep_status}}" bind:tap="removeProductKeep">收藏</view>
-<view wx:if="{{!keep_status}}" bind:tap="addProductKeep">未收藏</view>
 
-<!--跳转到购物车-->
-<view bind:tap="onCartTap">购物车{{cartTotalCounts}}</view>
-
-<!--加入购物车-->
-<view>加入购物车</view>
-
-<form bind:submit="onAddingToCartTap">
-  <input placeholder='数量' name='productCounts'></input>
-  <button form-type="submit" class="submit">加入购物车</button>
-</form>
-
-
-<view>立即购买</view>
+<!-- 购物车 -->
+<v-cart />

@@ -1,0 +1,24 @@
+.f{
+  display:flex;
+}
+.f-all-c{
+  display:flex;
+  align-items: center;
+  justify-content: center;
+}
+.f-a-c{
+  display:flex;
+  align-items:center;
+}
+.f-j-c{
+  display:flex;
+  justify-content: center;
+}
+.f-d-c{
+  display:flex;
+  flex-direction: column;
+}
+
+.yellow{
+  color:#FFB25E
+}

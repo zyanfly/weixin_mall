@@ -4,7 +4,7 @@
   <view class="my-header">
     <button wx:if="{{!authorized}}" open-type="getUserInfo" bind:getuserinfo="onGetUserInfo" class="unlogin">
       <view class="imgwrap">
-        <icon class="iconfont icon-morentouxiang" />
+        <icon class="iconfont icon-avatar" />
       </view>
       <view class="imgbottom">
         未登录
@@ -28,11 +28,11 @@
   <!-- 订单类型 -->
   <view class="order-type">
     <view bind:tap="onTapOrder" data-status='0'>
-      <icon class="iconfont icon-daifukuan" />
+      <icon class="iconfont icon-needpay" />
       待付款
     </view>
     <view bind:tap="onTapOrder" data-status='1'>
-      <icon class="iconfont icon-yifukuan" />
+      <icon class="iconfont icon-payed" />
       已付款
     </view>
     <view bind:tap="onTapOrder" data-status='2'>
@@ -40,7 +40,7 @@
       已发货
     </view>
     <view bind:tap="onTapOrder" data-status='3'>
-      <icon class="iconfont icon-tubiaolunkuo" />
+      <icon class="iconfont icon-received" />
       已收货
     </view>
   </view>
@@ -49,19 +49,19 @@
   <view class="my-set">
     <view class="set-item" ontap="onTapProductAfters">
       <view>
-        <icon class="iconfont icon-dizhi" /> 退款/售后
+        <icon class="iconfont icon-tuikuan" /> 退款/售后
       </view>
       <icon class="iconfont icon-right" />
     </view>
     <view class="set-item" ontap="onTapProductKeeps">
       <view>
-        <icon class="iconfont icon-dizhi" /> 我的收藏
+        <icon class="iconfont icon-collected" /> 我的收藏
       </view>
       <icon class="iconfont icon-right" />
     </view>
     <view class="set-item" ontap="editAddress">
       <view>
-        <icon class="iconfont icon-dizhi" /> 收获地址
+        <icon class="iconfont icon-position" /> 收获地址
       </view>
       <icon class="iconfont icon-right" />
     </view>

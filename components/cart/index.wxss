@@ -1,0 +1,46 @@
+/* 购物车 */
+@import '../../app.wxss';
+.cart{
+  position: fixed;
+  bottom:0;
+  width:100%;
+  display:flex;
+  font-size:14px;
+  background-color:#fff;
+}
+.cart button{
+  background:transparent;
+  margin:0;
+  color:#666;
+}
+.cart button::after{
+  border:none;
+}
+.btn_box{
+  flex-basis: 13.333%;
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items:center;
+  padding:15rpx;
+}
+.btn_box .box_icon{
+  font-size:40rpx;
+  line-height:40rpx;
+  margin-bottom:10rpx;
+  /* line-height:  */
+}
+.btn_box .box_text{
+  font-size:20rpx;
+  line-height:20rpx;
+}
+.btn_box_big{
+  flex-basis: 30%;
+  color:#fff;
+}
+.incart{
+  background-color:#FFAA24;
+}
+.buynow{
+  background-color:#FF7800;
+}
