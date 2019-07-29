@@ -40,6 +40,7 @@ class Token {
         var that = this;
         wx.login({
             success: function (res) {
+                console.log("hello")
                 console.log(res.code);
                 wx.request({
                     url: that.tokenUrl,

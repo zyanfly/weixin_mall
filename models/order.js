@@ -26,6 +26,12 @@ class OrderModel extends HTTP {
     })
   }
 
+  getOrderByOrderId(order_id) {
+    return this.request({
+      url: 'orders/' + order_id
+    })
+  }
+
   getOrdersByAfterStatus(after_status){
     return this.request({
       url: 'after_order/' + after_status

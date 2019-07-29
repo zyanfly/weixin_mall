@@ -22,6 +22,8 @@ Page({
   },
 
   onLoad: function (options) {
+    // console.log("product detail page")
+    // console.log(options)
     this.userAuthorized()
     this.setData({
       id: options.bid
